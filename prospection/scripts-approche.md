@@ -6,7 +6,7 @@
 > Je suis [NOM], de BIG RÉUSSITE. Je m'adresse à vous en tant que Directeur des Études de [ÉCOLE].
 >
 > Nous animons des **sessions d'initiation à l'intelligence artificielle** directement dans les
-> classes — 2 séances pratiques de 2h, avec les téléphones des élèves, sans besoin de salle informatique.
+> classes — une séance pratique de 2h, avec les téléphones des élèves, sans besoin de salle informatique.
 >
 > L'objectif est simple : que vos étudiants de [FILIÈRE] sachent utiliser l'IA pour leurs travaux
 > et pour leur employabilité, au lieu de la subir.
@@ -30,14 +30,14 @@ programme, il verra en 2 minutes si ça l'intéresse. »**
 
 ## 3. E-mail (trace formelle, après le WhatsApp)
 
-**Objet :** Initiation à l'IA pour vos classes — proposition 2 séances / classe
+**Objet :** Initiation à l'IA pour vos classes — une séance de 2h par classe
 
 > Madame, Monsieur le Directeur des Études,
 >
 > BIG RÉUSSITE propose aux grandes écoles de Côte d'Ivoire un module court d'**initiation à
 > l'intelligence artificielle**, conçu pour les étudiants et animé en présentiel dans vos locaux.
 >
-> **Format :** 2 séances de 2h par classe · **Matériel :** téléphones des étudiants + un vidéoprojecteur
+> **Format :** une séance de 2h par classe · **Matériel :** téléphones des étudiants + un vidéoprojecteur
 > · **Livrable :** kit de prompts + attestation de participation.
 >
 > Le module couvre l'usage professionnel de l'IA (travaux, exposés, recherche documentaire),
@@ -50,21 +50,28 @@ programme, il verra en 2 minutes si ça l'intéresse. »**
 > Cordialement,
 > [NOM] — BIG RÉUSSITE — [TÉLÉPHONE] — [EMAIL]
 
-## 4. Traitement des 3 objections qui reviennent
+## 4. Traitement des objections qui reviennent
 
 | Objection | Réponse |
 |---|---|
 | « On n'a pas de salle informatique » | Pas nécessaire. Les étudiants travaillent sur leur téléphone. Il faut juste une salle et un vidéoprojecteur. |
 | « Ce n'est pas au programme officiel » | C'est un module hors cursus, sur un créneau libre ou un samedi. Aucune modification de maquette, aucune validation ministérielle requise. |
-| « Qui paie ? » | Deux options : l'école l'intègre aux frais annexes, ou les délégués de classe collectent. Dans les deux cas on ne facture qu'une fois la classe confirmée. |
+| « Qui paie ? » | L'établissement fixe une somme par élève et la collecte, soit via les frais annexes, soit via les délégués de classe. On ne facture qu'une fois la classe confirmée. |
+| « Une seule séance, ça suffit ? » | La séance est conçue pour être autonome : à la fin, chaque étudiant a fait tourner l'outil lui-même et repart avec son kit. **Une seconde séance est possible, on en discute une fois la première programmée.** Ne jamais l'offrir à ce stade. |
+| « C'est cher pour nos étudiants » | Descendre le montant par élève de 10 000 à 5 000 — jamais le nombre de séances, jamais le seuil de 20 élèves. Et ne descendre qu'en échange d'un engagement sur d'autres classes. |
 
-## 5. Ordre d'attaque recommandé
+## 5. Ordre d'attaque
 
-**Vague 1 — décision rapide, effectif important (groupes privés) :**
-AGITEL-FORMATION · PIGIER CI · Groupe CSI Pôle Polytechnique · IFSM · Groupe HETEC · ESBTP
+L'ordre d'appel est porté par **`suivi-appels.csv`**, trié par vague :
 
-**Vague 2 — gros volumes, décision plus lente :**
-IUA · Université de l'Atlantique · Groupe LOKO · ITES · Groupe ESC · ESICOM · Groupe CERCO · HEC Abidjan
+- **Vague 1 (30 écoles)** — privé, Abidjan, coordonnées vérifiées sur site officiel.
+  Décision rapide, interlocuteur joignable. C'est là qu'on décroche les premiers marchés.
+- **Vague 2 (57 écoles)** — privé, contact à qualifier ou hors Abidjan. Un appel de
+  qualification en plus avant de proposer.
+- **Vague 3 (19 écoles)** — public : universités, lycées techniques, INP-HB, AGEFOP.
+  Gros effectifs mais circuit administratif long : à lancer en parallèle, sans compter
+  dessus pour le chiffre du mois.
 
-**Vague 3 — publiques (prestige, mais circuit administratif long, viser via le Directeur de Centre) :**
-ESATIC · ISTC Polytechnique · INSAAC · INP-HB · IPNETP · UIGB
+**Règle de rythme :** 15 contacts WhatsApp par jour sur la vague 1, relance à J+2 puis J+7,
+puis on passe à la suivante. Renseigner le nom du Directeur des Études à chaque appel —
+c'est cette colonne qui fera la valeur de la base dans un mois.

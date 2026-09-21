@@ -4,9 +4,9 @@
 | Fichier | Rôle |
 |---|---|
 | `ecoles-ci-contacts.csv` | Base de contacts (séparateur `;`, ouvrable dans Excel / Google Sheets) |
-| `offre-initiation-ia.md` | L'offre : format 2 séances/classe, contenu, grille tarifaire, circuit de décision |
+| `offre-initiation-ia.md` | L'offre : une séance de 2h par classe, prix par élève, règles de négociation de la 2e séance, circuit de décision |
 | `scripts-approche.md` | Scripts WhatsApp / appel / e-mail + traitement d'objections + ordre d'attaque |
-| `suivi-appels.csv` | **Feuille de prospection à remplir** : 106 lignes classées en 3 vagues, colonnes de suivi (nom du DE, statut, palier, nb de classes, montant attendu) |
+| `suivi-appels.csv` | **Feuille de prospection à remplir** : 106 lignes classées en 3 vagues, colonnes de suivi (nom du DE, statut, montant par élève, nb d'élèves, nb de séances négocié, nb de classes, montant attendu) |
 | `tools/merge_contacts.py` | Fusionne un nouveau lot de contacts dans la base : dédoublonnage, contrôle de format, normalisation des numéros |
 
 ## État de la base
