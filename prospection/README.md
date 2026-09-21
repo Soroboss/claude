@@ -1,25 +1,33 @@
 # Prospection — Grandes écoles CI · Offre "Initiation à l'IA"
 
+## Où tout est stocké
+
+| Endroit | Quoi |
+|---|---|
+| Ce dépôt git | La source de vérité : tous les fichiers ci-dessous, versionnés |
+| Google Drive — dossier *BIG REUSSITE - Prospection Ecoles IA* | `Suivi appels - Ecoles IA` (Google Sheet vivant) et `Offre et scripts - Initiation IA` (Google Doc) |
+| `prospection-ecoles-ia.xlsx` | Le classeur complet, 6 onglets, avec tableau de bord et listes déroulantes. À déposer dans le dossier Drive pour l'ouvrir dans Sheets |
+| `sheets/*.csv` | Les mêmes tables en CSV séparé par virgules, avec BOM UTF-8 : s'ouvrent sans réglage dans Google Sheets et Excel |
+
 ## Contenu
 | Fichier | Rôle |
 |---|---|
 | `ecoles-ci-contacts.csv` | Base de contacts (séparateur `;`, ouvrable dans Excel / Google Sheets) |
 | `offre-initiation-ia.md` | L'offre : une séance de 2h par classe, prix par élève, règles de négociation de la 2e séance, circuit de décision |
 | `scripts-approche.md` | Scripts WhatsApp / appel / e-mail + traitement d'objections + ordre d'attaque |
-| `suivi-appels.csv` | **Feuille de prospection à remplir** : 106 lignes classées en 3 vagues, colonnes de suivi (nom du DE, statut, montant par élève, nb d'élèves, nb de séances négocié, nb de classes, montant attendu) |
+| `suivi-appels.csv` | **Feuille de prospection à remplir** : 105 lignes classées en 3 vagues, colonnes de suivi (nom du DE, statut, montant par élève, nb d'élèves, nb de séances négocié, nb de classes, montant attendu) |
 | `tools/merge_contacts.py` | Fusionne un nouveau lot de contacts dans la base : dédoublonnage, contrôle de format, normalisation des numéros |
 
 ## État de la base
 
-**106 établissements** — 102 avec au moins un téléphone, 69 avec un e-mail, 0 doublon.
-43 fiches en fiabilité Haute, 63 en Moyenne.
+**105 établissements** — 101 avec au moins un téléphone, 68 avec un e-mail, 0 doublon.
 
 Répartition de `suivi-appels.csv` :
 
 | Vague | Nombre | Profil | Pourquoi commencer là |
 |---|---|---|---|
 | 1 | 30 | Privé, Abidjan, coordonnées vérifiées sur site officiel | Décision rapide, interlocuteur joignable, effectifs payants |
-| 2 | 57 | Privé, contact moyennement fiable ou hors Abidjan | Bon potentiel, un appel de qualification en plus |
+| 2 | 56 | Privé, contact moyennement fiable ou hors Abidjan | Bon potentiel, un appel de qualification en plus |
 | 3 | 19 | Public (universités, lycées techniques, INP-HB, AGEFOP) | Gros volumes mais circuit administratif long |
 
 ## Méthode de collecte
@@ -63,3 +71,22 @@ repérés mais sans coordonnées exploitables, à traiter dans une prochaine pas
   Groupe ETEC Yopougon, ESETP Yopougon, ESSC Saint Chalmel, Université SEPI, ISSF Adjamé,
   CFP-GDS Anyama, BEFST Anyama
 - **Autres** : IFPT Daloa, IUSSE San-Pédro, CFP Daloa 1 et 2, Groupe ETEC Gagnoa, Institut Supérieur Sarhaoum Man
+
+## Le classeur `prospection-ecoles-ia.xlsx`
+
+Six onglets : Mode d'emploi · Tableau de bord · Suivi appels · Base contacts · Offre et tarifs ·
+Scripts et objections.
+
+- **Suivi appels** est la seule feuille à remplir. Cellules jaunes = à saisir, cellule verte =
+  calculée. Listes déroulantes sur Statut, Montant par élève et Nb de séances. Une ligne
+  d'exemple en haut montre le format attendu — à supprimer une fois comprise.
+- **Montant attendu** se calcule seul : `(montant par élève + supplément) × nb d'élèves × nb de classes`,
+  le supplément étant de +3 000 F par élève si une 2e séance est négociée au palier 5 000.
+- **Tableau de bord** agrège tout : CA signé, CA en négociation, taux de transformation, et le
+  restant à contacter par vague.
+
+Les formules ont été vérifiées de deux façons : contrôle statique des 130 formules (toutes les
+références pointent vers un onglet et une plage existants, aucune fonction non supportée), et
+rejeu de leur logique en Python sur 13 cas de test. LibreOffice n'étant pas utilisable dans
+l'environnement de génération, les valeurs mises en cache sont vides : elles se calculent à
+l'ouverture dans Google Sheets ou Excel.
