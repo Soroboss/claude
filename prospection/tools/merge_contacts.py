@@ -56,7 +56,7 @@ def norm_tel(t):
     d = re.sub(r"\D", "", t)
     if d.startswith("00"):                # prefixe international
         d = d[2:]
-    if len(d) == 13 and d.startswith("225"):
+    if d.startswith("225") and len(d) in (11, 13):   # 225 + ancien 8 chiffres, ou 225 + 10 chiffres
         d = d[3:]
     if len(d) == 8:
         d = _migrer_8_chiffres(d) or d
