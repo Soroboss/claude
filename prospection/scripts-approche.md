@@ -1,23 +1,33 @@
 # Scripts d'approche — Directeurs des Études
 
-## 1. WhatsApp (premier contact — le plus efficace en CI)
+## 1. WhatsApp — page d'envoi avec suivi
 
-> Bonjour Monsieur/Madame,
-> Je suis [NOM], de BIG RÉUSSITE. Je m'adresse à vous en tant que Directeur des Études de [ÉCOLE].
->
-> Nous animons des **sessions d'initiation à l'intelligence artificielle** directement dans les
-> classes — une séance pratique de 2h, avec les téléphones des élèves, sans besoin de salle informatique.
->
-> L'objectif est simple : que vos étudiants de [FILIÈRE] sachent utiliser l'IA pour leurs travaux
-> et pour leur employabilité, au lieu de la subir.
->
-> Puis-je vous envoyer le programme en 1 page ? Et seriez-vous disponible 15 minutes cette semaine
-> pour en parler ?
->
-> Cordialement,
-> [NOM] — [TÉLÉPHONE]
+**Page en ligne :** https://claude.ai/artifact/67t1cemVUbVhMmHRAAoXFE
 
-**Règle :** un seul message. Pas de relance avant 48h. Relance n°1 à J+2, relance n°2 à J+7, puis stop.
+73 écoles, le message déjà rédigé et personnalisé. On clique « Envoyer sur WhatsApp »,
+WhatsApp s'ouvre sur la bonne conversation, il ne reste qu'à appuyer sur envoyer.
+Le statut passe automatiquement à « Envoyé ». Compteurs, filtres par vague, champ note
+par école. Le suivi est partagé entre tous tes appareils.
+
+`envois/whatsapp-envoi.csv` contient les mêmes messages en tableau, pour un usage hors ligne.
+
+**Message envoyé :**
+
+> Bonjour, je vous écris de la part de BIG RÉUSSITE. Je m'adresse au Directeur des Études d'[ÉCOLE].
+>
+> Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que personne ne leur
+> ait appris à s'en servir. L'établissement porte le risque, plagiat et travaux uniformisés, sans en
+> tirer le moindre bénéfice.
+>
+> Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des étudiants.
+> Aucune salle informatique nécessaire.
+>
+> Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront l'annoncer à
+> leurs futurs étudiants.
+>
+> Puis-je vous envoyer le programme en 1 page ?
+
+Relance à J+2, puis à J+7, puis on arrête. Les deux textes sont dans la page et dans le CSV.
 
 ## 2. Appel au standard (quand on n'a que le fixe)
 
@@ -30,25 +40,40 @@ programme, il verra en 2 minutes si ça l'intéresse. »**
 
 ## 3. E-mail (trace formelle, après le WhatsApp)
 
-**Objet :** Initiation à l'IA pour vos classes — une séance de 2h par classe
+**Objet :** Vos étudiants utilisent déjà l'IA — personne ne leur a appris à s'en servir
 
 > Madame, Monsieur le Directeur des Études,
 >
-> BIG RÉUSSITE propose aux grandes écoles de Côte d'Ivoire un module court d'**initiation à
-> l'intelligence artificielle**, conçu pour les étudiants et animé en présentiel dans vos locaux.
+> Une question simple : combien d'étudiants d'[ÉCOLE] ont rendu ce semestre un exposé ou un
+> rapport écrit, en partie, par une intelligence artificielle ?
 >
-> **Format :** une séance de 2h par classe · **Matériel :** téléphones des étudiants + un vidéoprojecteur
-> · **Livrable :** kit de prompts + attestation de participation.
+> Vos enseignants le sentent souvent, sans pouvoir le prouver. Et c'est l'établissement qui porte
+> le risque — travaux uniformisés, mémoires dont on ne sait plus qui les a écrits, valeur du
+> diplôme discutée — alors qu'aucun étudiant n'a jamais reçu la moindre règle d'usage.
 >
-> Le module couvre l'usage professionnel de l'IA (travaux, exposés, recherche documentaire),
-> les cas d'usage propres à chaque filière, et les règles d'usage responsable — un point que
-> beaucoup d'établissements souhaitent aujourd'hui cadrer auprès de leurs étudiants.
+> Le paradoxe est là : ils se servent de cet outil tous les jours, et aucun ne sait réellement
+> s'en servir. Ni pour produire un travail défendable devant un jury, ni pour le premier entretien
+> d'embauche qui les attend.
 >
-> Je me tiens à votre disposition pour vous présenter le programme détaillé et convenir
-> d'un créneau test sur une classe.
+> C'est exactement ce que BIG RÉUSSITE vient corriger. Une séance de 2h, animée en présentiel dans
+> vos classes : ce qu'est réellement l'IA, comment l'utiliser sur un travail universitaire sans
+> tomber dans le plagiat, les cas d'usage propres à chaque filière, et ce qu'un recruteur attend
+> aujourd'hui. Les étudiants travaillent sur leur propre téléphone : aucune salle informatique,
+> aucun investissement de votre part.
+>
+> Un mot sur le calendrier. Le sujet est encore neuf en Côte d'Ivoire. L'établissement qui le cadre
+> maintenant ne règle pas seulement un problème interne : il peut l'annoncer à ses futurs étudiants
+> et à leurs parents, au moment précis où la question commence à se poser partout. Dans un an, ce
+> sera la norme, et plus personne n'en tirera d'avantage.
+>
+> Je vous propose de commencer par une classe test. Vous jugez sur pièce, et vous décidez ensuite.
 >
 > Cordialement,
-> [NOM] — BIG RÉUSSITE — [TÉLÉPHONE] — [EMAIL]
+> BIG RÉUSSITE
+
+**La structure à ne pas casser :** un problème que le destinataire reconnaît → le risque qu'il
+porte aujourd'hui → notre solution → la prime au premier qui bouge → une demande minuscule
+(une classe test). Si tu réécris le mail, garde ces cinq temps.
 
 ## 4. Traitement des objections qui reviennent
 

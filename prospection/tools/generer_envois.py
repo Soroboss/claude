@@ -53,41 +53,60 @@ def qui_parle():
 def message_whatsapp(ecole):
     return (
         f"Bonjour, {qui_parle()}. Je m'adresse au Directeur des Études {de(ecole)}.\n\n"
-        "Nous animons une séance d'initiation à l'intelligence artificielle de 2h, "
-        "directement dans vos classes, avec les téléphones des élèves : aucune salle "
-        "informatique nécessaire.\n\n"
-        "L'objectif est que vos étudiants sachent utiliser l'IA pour leurs travaux et "
-        "pour leur employabilité, au lieu de la subir.\n\n"
+        "Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que "
+        "personne ne leur ait appris à s'en servir. L'établissement porte le risque, plagiat "
+        "et travaux uniformisés, sans en tirer le moindre bénéfice.\n\n"
+        "Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des "
+        "étudiants. Aucune salle informatique nécessaire.\n\n"
+        "Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront "
+        "l'annoncer à leurs futurs étudiants.\n\n"
         "Puis-je vous envoyer le programme en 1 page ?"
     )
 
 
-RELANCE_J2 = ("Bonjour, je me permets de revenir vers vous au sujet de la séance d'initiation à l'IA "
-              "pour vos classes. Souhaitez-vous que je vous envoie le programme ? Cela prend 2 minutes à lire.")
-RELANCE_J7 = ("Bonjour, dernière relance de ma part. Si le sujet n'est pas d'actualité cette année, "
-              "dites-le moi simplement et je n'insisterai pas. Si au contraire vous souhaitez en parler, "
-              "je reste disponible 15 minutes quand cela vous arrange.")
+RELANCE_J2 = (
+    "Bonjour, je me permets de revenir vers vous. La question n'est pas de savoir si vos "
+    "étudiants utilisent l'IA, ils le font déjà. Elle est de savoir qui leur apprend à s'en "
+    "servir correctement. Souhaitez-vous que je vous envoie le programme ? Deux minutes de lecture."
+)
+RELANCE_J7 = (
+    "Bonjour, dernière relance de ma part. Si le sujet n'est pas d'actualité pour vous cette "
+    "année, dites-le moi simplement et je n'insisterai pas. Si au contraire vous voulez en "
+    "parler, je reste disponible 15 minutes quand cela vous arrange."
+)
 
-OBJET = "Initiation à l'IA pour vos classes — une séance de 2h par classe"
+OBJET = "Vos étudiants utilisent déjà l'IA — personne ne leur a appris à s'en servir"
 
 
 def corps_email(ecole):
     lignes = [
         "Madame, Monsieur le Directeur des Études,",
         "",
-        f"BIG RÉUSSITE propose aux établissements comme {ecole} un module court d'initiation à "
-        "l'intelligence artificielle, conçu pour les étudiants et animé en présentiel dans vos locaux.",
+        f"Une question simple : combien d'étudiants {de(ecole)} ont rendu ce semestre un exposé "
+        "ou un rapport écrit, en partie, par une intelligence artificielle ?",
         "",
-        "Format : une séance de 2h par classe.",
-        "Matériel : les téléphones des étudiants et un vidéoprojecteur. Aucune salle informatique nécessaire.",
-        "Livrable : un kit de prompts et une attestation de participation pour chaque étudiant.",
+        "Vos enseignants le sentent souvent, sans pouvoir le prouver. Et c'est l'établissement "
+        "qui porte le risque — travaux uniformisés, mémoires dont on ne sait plus qui les a "
+        "écrits, valeur du diplôme discutée — alors qu'aucun étudiant n'a jamais reçu la "
+        "moindre règle d'usage.",
         "",
-        "Le module couvre l'usage professionnel de l'IA (travaux, exposés, recherche documentaire), "
-        "les cas d'usage propres à chaque filière, et les règles d'usage responsable — un point que "
-        "beaucoup d'établissements souhaitent aujourd'hui cadrer auprès de leurs étudiants.",
+        "Le paradoxe est là : ils se servent de cet outil tous les jours, et aucun ne sait "
+        "réellement s'en servir. Ni pour produire un travail défendable devant un jury, ni "
+        "pour le premier entretien d'embauche qui les attend.",
         "",
-        "Je me tiens à votre disposition pour vous présenter le programme détaillé et convenir "
-        "d'un créneau test sur une classe.",
+        "C'est exactement ce que BIG RÉUSSITE vient corriger. Une séance de 2h, animée en "
+        "présentiel dans vos classes : ce qu'est réellement l'IA, comment l'utiliser sur un "
+        "travail universitaire sans tomber dans le plagiat, les cas d'usage propres à chaque "
+        "filière, et ce qu'un recruteur attend aujourd'hui. Les étudiants travaillent sur leur "
+        "propre téléphone : aucune salle informatique, aucun investissement de votre part.",
+        "",
+        "Un mot sur le calendrier. Le sujet est encore neuf en Côte d'Ivoire. L'établissement "
+        "qui le cadre maintenant ne règle pas seulement un problème interne : il peut l'annoncer "
+        "à ses futurs étudiants et à leurs parents, au moment précis où la question commence à "
+        "se poser partout. Dans un an, ce sera la norme, et plus personne n'en tirera d'avantage.",
+        "",
+        "Je vous propose de commencer par une classe test. Vous jugez sur pièce, et vous "
+        "décidez ensuite.",
         "",
         "Cordialement,",
         signature(),

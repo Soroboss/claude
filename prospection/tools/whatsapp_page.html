@@ -1,0 +1,421 @@
+<title>Tournée WhatsApp Écoles</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --fond:#F4F6F4; --carte:#FFFFFF; --encre:#12171A; --doux:#5A6670;
+    --trait:#E1E6E2; --accent:#0B6B57; --accent-fond:#E5F0EB; --accent-vif:#0E8468;
+    --t-attente-e:#5A6670; --t-attente-f:#ECEFEC;
+    --t-envoye-e:#8A5B0C;  --t-envoye-f:#FAF0DC;
+    --t-reponse-e:#15803D; --t-reponse-f:#E5F3E9;
+    --t-rdv-e:#1D4ED8;     --t-rdv-f:#E6ECFC;
+    --t-signe-e:#0B6B57;   --t-signe-f:#D9EDE5;
+    --t-refus-e:#8F3A3A;   --t-refus-f:#F7E8E8;
+    --ombre:0 1px 2px rgba(18,23,26,.05), 0 1px 1px rgba(18,23,26,.04);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --fond:#101412; --carte:#181D1A; --encre:#E9EDEA; --doux:#97A29B;
+      --trait:#272E29; --accent:#46B892; --accent-fond:#16261F; --accent-vif:#5ACCA5;
+      --t-attente-e:#97A29B; --t-attente-f:#1E2421;
+      --t-envoye-e:#D8A75A; --t-envoye-f:#2A2214;
+      --t-reponse-e:#6FCB8E; --t-reponse-f:#152618;
+      --t-rdv-e:#8AAAF5;     --t-rdv-f:#161D2C;
+      --t-signe-e:#5ACCA5;   --t-signe-f:#13261F;
+      --t-refus-e:#E09A9A;   --t-refus-f:#2A1919;
+      --ombre:0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --fond:#101412; --carte:#181D1A; --encre:#E9EDEA; --doux:#97A29B;
+    --trait:#272E29; --accent:#46B892; --accent-fond:#16261F; --accent-vif:#5ACCA5;
+    --t-attente-e:#97A29B; --t-attente-f:#1E2421;
+    --t-envoye-e:#D8A75A; --t-envoye-f:#2A2214;
+    --t-reponse-e:#6FCB8E; --t-reponse-f:#152618;
+    --t-rdv-e:#8AAAF5;     --t-rdv-f:#161D2C;
+    --t-signe-e:#5ACCA5;   --t-signe-f:#13261F;
+    --t-refus-e:#E09A9A;   --t-refus-f:#2A1919;
+    --ombre:0 1px 2px rgba(0,0,0,.3);
+  }
+
+  body{
+    background:var(--fond); color:var(--encre);
+    font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+    font-size:15px; line-height:1.5;
+    padding-inline:16px; padding-block:0 40px;
+    max-width:760px; margin-inline:auto;
+    -webkit-text-size-adjust:100%;
+  }
+  *{box-sizing:border-box}
+
+  header{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:5;
+    background:var(--fond); padding-block:14px 10px;
+    border-bottom:1px solid var(--trait); margin-bottom:14px;
+  }
+  h1{
+    font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;
+    font-weight:700; font-size:22px; line-height:1.15; margin:0 0 2px;
+    letter-spacing:-.02em; text-wrap:balance;
+  }
+  .sous{color:var(--doux); font-size:12.5px; margin:0 0 12px}
+
+  .compteurs{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:10px}
+  .compteur{display:flex; align-items:baseline; gap:5px}
+  .compteur b{
+    font-family:"Bricolage Grotesque",sans-serif; font-size:19px; font-weight:700;
+    font-variant-numeric:tabular-nums; line-height:1;
+  }
+  .compteur span{font-size:11.5px; color:var(--doux); text-transform:uppercase; letter-spacing:.06em}
+
+  .jauge{height:5px; border-radius:3px; background:var(--trait); overflow:hidden; margin-bottom:12px}
+  .jauge i{display:block; height:100%; background:var(--accent); width:0; transition:width .35s ease}
+
+  .filtres{display:flex; gap:6px; flex-wrap:wrap}
+  .puce{
+    font:500 12.5px/1 "IBM Plex Sans",sans-serif; color:var(--doux);
+    background:var(--carte); border:1px solid var(--trait); border-radius:999px;
+    padding:7px 12px; cursor:pointer; white-space:nowrap;
+  }
+  .puce[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
+  .puce:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{
+    outline:2px solid var(--accent-vif); outline-offset:2px;
+  }
+
+  ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+  li{
+    background:var(--carte); border:1px solid var(--trait); border-radius:12px;
+    padding:13px 14px; box-shadow:var(--ombre);
+  }
+  .tete{display:flex; align-items:flex-start; gap:9px; margin-bottom:3px}
+  .vague{
+    flex:none; font:600 10.5px/1 "IBM Plex Sans",sans-serif; letter-spacing:.05em;
+    color:var(--accent); background:var(--accent-fond); border-radius:5px;
+    padding:5px 7px; margin-top:1px;
+  }
+  .nom{font-weight:600; font-size:15px; line-height:1.3; overflow-wrap:anywhere}
+  .meta{color:var(--doux); font-size:12.5px; margin:0 0 11px; overflow-wrap:anywhere}
+  .meta b{font-weight:500; font-variant-numeric:tabular-nums; color:var(--encre)}
+
+  .actions{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+  .envoyer{
+    flex:1 1 190px; display:inline-flex; align-items:center; justify-content:center; gap:7px;
+    background:var(--accent); color:#fff; text-decoration:none;
+    font:600 14px/1 "IBM Plex Sans",sans-serif; border-radius:9px; padding:12px 14px;
+    min-height:44px; transition:background .15s ease;
+  }
+  .envoyer:hover{background:var(--accent-vif)}
+  .envoyer svg{flex:none}
+
+  select,input[type="text"]{
+    font:500 13px/1 "IBM Plex Sans",sans-serif; color:var(--encre);
+    background:var(--carte); border:1px solid var(--trait); border-radius:9px;
+    padding:11px 10px; min-height:44px;
+  }
+  select{flex:1 1 140px}
+  input[type="text"]{width:100%; margin-top:8px; font-weight:400}
+
+  li[data-statut="envoye"]   {border-left:3px solid var(--t-envoye-e)}
+  li[data-statut="relance"]  {border-left:3px solid var(--t-envoye-e)}
+  li[data-statut="reponse"]  {border-left:3px solid var(--t-reponse-e)}
+  li[data-statut="rdv"]      {border-left:3px solid var(--t-rdv-e)}
+  li[data-statut="signe"]    {border-left:3px solid var(--t-signe-e); background:var(--t-signe-f)}
+  li[data-statut="refus"]    {border-left:3px solid var(--t-refus-e); opacity:.62}
+  li[data-statut="injoignable"]{opacity:.62}
+
+  .date{font-size:11.5px; color:var(--doux); margin-top:7px; font-variant-numeric:tabular-nums}
+  .vide{color:var(--doux); text-align:center; padding:28px 0; font-size:13.5px}
+  .etat{
+    font-size:11.5px; color:var(--doux); margin-top:16px; padding-top:12px;
+    border-top:1px solid var(--trait); text-align:center;
+  }
+  @media (prefers-reduced-motion: reduce){*{transition:none !important}}
+</style>
+
+<header>
+  <h1>Tournée WhatsApp Écoles</h1>
+  <p class="sous">Initiation à l'IA — grandes écoles de Côte d'Ivoire</p>
+  <div class="compteurs">
+    <div class="compteur"><b id="c-total">0</b><span>à contacter</span></div>
+    <div class="compteur"><b id="c-envoyes">0</b><span>envoyés</span></div>
+    <div class="compteur"><b id="c-reponses">0</b><span>réponses</span></div>
+    <div class="compteur"><b id="c-rdv">0</b><span>RDV</span></div>
+    <div class="compteur"><b id="c-signes">0</b><span>signés</span></div>
+  </div>
+  <div class="jauge"><i id="jauge"></i></div>
+  <div class="filtres" id="filtres"></div>
+</header>
+
+<ul id="liste"></ul>
+<p class="etat" id="etat">Chargement du suivi…</p>
+
+<script>
+(function(){
+  "use strict";
+
+  var ECOLES = __ECOLES__;
+
+  var STATUTS = [
+    {id:"a-contacter", nom:"À contacter"},
+    {id:"envoye",      nom:"Envoyé"},
+    {id:"relance",     nom:"Relancé"},
+    {id:"reponse",     nom:"A répondu"},
+    {id:"rdv",         nom:"RDV fixé"},
+    {id:"signe",       nom:"Signé"},
+    {id:"refus",       nom:"Refusé"},
+    {id:"injoignable", nom:"Injoignable"}
+  ];
+
+  var VOYELLES = "AEIOUÉÈÊÀÂÎÔÛ";
+  function de(nom){
+    return (VOYELLES.indexOf(nom.charAt(0).toUpperCase()) >= 0 ? "d'" : "de ") + nom;
+  }
+
+  function message(nom){
+    return "Bonjour, je vous écris de la part de BIG RÉUSSITE. Je m'adresse au Directeur des Études "
+      + de(nom) + ".\n\n"
+      + "Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que personne "
+      + "ne leur ait appris à s'en servir. L'établissement porte le risque, plagiat et travaux "
+      + "uniformisés, sans en tirer le moindre bénéfice.\n\n"
+      + "Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des "
+      + "étudiants. Aucune salle informatique nécessaire.\n\n"
+      + "Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront "
+      + "l'annoncer à leurs futurs étudiants.\n\n"
+      + "Puis-je vous envoyer le programme en 1 page ?";
+  }
+
+  function lien(e){
+    return "https://wa.me/225" + e.num + "?text=" + encodeURIComponent(message(e.nom));
+  }
+
+  // --- suivi : db partagé si disponible, sinon stockage local du navigateur ---
+  var suivi = Object.create(null);
+  var db = null;
+  var etat = document.getElementById("etat");
+
+  function chargerLocal(){
+    try{
+      suivi = JSON.parse(localStorage.getItem("suivi-wa") || "{}") || Object.create(null);
+    }catch(e){ suivi = Object.create(null); }
+  }
+  function enregistrerLocal(){
+    try{ localStorage.setItem("suivi-wa", JSON.stringify(suivi)); }catch(e){}
+  }
+
+  function noter(id, champs){
+    var actuel = suivi[id] || {};
+    var fusion = {statut: actuel.statut || "a-contacter", date: actuel.date || "", note: actuel.note || ""};
+    for (var k in champs) fusion[k] = champs[k];
+    suivi[id] = fusion;
+    if (db){
+      db.doc("suivi/" + id).set(fusion).catch(function(err){
+        etat.textContent = err && err.code === "revoked"
+          ? "Suivi partagé interrompu — les changements restent sur cet appareil."
+          : "Ce changement n'a pas pu être enregistré. Réessayez.";
+        enregistrerLocal();
+      });
+    } else {
+      enregistrerLocal();
+    }
+  }
+
+  // --- rendu ---
+  var liste = document.getElementById("liste");
+  var filtreVague = 0, filtreStatut = "tous";
+
+  function statutDe(id){ return (suivi[id] && suivi[id].statut) || "a-contacter"; }
+
+  function visible(e){
+    if (filtreVague && e.vague !== filtreVague) return false;
+    var s = statutDe(e.id);
+    if (filtreStatut === "tous") return true;
+    if (filtreStatut === "restant") return s === "a-contacter";
+    if (filtreStatut === "actifs") return s === "reponse" || s === "rdv";
+    return s === filtreStatut;
+  }
+
+  function compter(){
+    var n = {envoyes:0, reponses:0, rdv:0, signes:0, restant:0};
+    ECOLES.forEach(function(e){
+      var s = statutDe(e.id);
+      if (s === "a-contacter") n.restant++; else n.envoyes++;
+      if (s === "reponse") n.reponses++;
+      if (s === "rdv") n.rdv++;
+      if (s === "signe") n.signes++;
+    });
+    document.getElementById("c-total").textContent = n.restant;
+    document.getElementById("c-envoyes").textContent = n.envoyes;
+    document.getElementById("c-reponses").textContent = n.reponses;
+    document.getElementById("c-rdv").textContent = n.rdv;
+    document.getElementById("c-signes").textContent = n.signes;
+    document.getElementById("jauge").style.width =
+      (ECOLES.length ? Math.round(n.envoyes / ECOLES.length * 100) : 0) + "%";
+  }
+
+  function aujourdhui(){
+    var d = new Date();
+    return String(d.getDate()).padStart(2,"0") + "/" + String(d.getMonth()+1).padStart(2,"0") + "/" + d.getFullYear();
+  }
+
+  function carte(e){
+    var s = statutDe(e.id), donnees = suivi[e.id] || {};
+    var li = document.createElement("li");
+    li.dataset.statut = s;
+
+    var tete = document.createElement("div");
+    tete.className = "tete";
+    var v = document.createElement("span");
+    v.className = "vague"; v.textContent = "V" + e.vague;
+    var nom = document.createElement("div");
+    nom.className = "nom"; nom.textContent = e.nom;
+    tete.appendChild(v); tete.appendChild(nom);
+    li.appendChild(tete);
+
+    var meta = document.createElement("p");
+    meta.className = "meta";
+    meta.appendChild(document.createTextNode(e.lieu + " · "));
+    var tel = document.createElement("b"); tel.textContent = e.tel;
+    meta.appendChild(tel);
+    li.appendChild(meta);
+
+    var actions = document.createElement("div");
+    actions.className = "actions";
+
+    var a = document.createElement("a");
+    a.className = "envoyer"; a.href = lien(e);
+    a.target = "_blank"; a.rel = "noopener";
+    a.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+      + '<path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.3.6.6-2.2-.2-.4A8 8 0 0 1 12 4zm-3.3 4.2c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.7 2.8 4.3 3.8 2.1.8 2.6.7 3 .6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.6-.3s-1.3-.6-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.3.1-.4l.4-.5c.1-.2.2-.3.2-.5v-.4c0-.1-.5-1.4-.7-1.9-.2-.4-.4-.4-.5-.4z"/>'
+      + '</svg>Envoyer sur WhatsApp';
+    a.addEventListener("click", function(){
+      if (statutDe(e.id) === "a-contacter"){
+        noter(e.id, {statut:"envoye", date:aujourdhui()});
+        rendre();
+      }
+    });
+    actions.appendChild(a);
+
+    var sel = document.createElement("select");
+    sel.id = "statut-" + e.id;
+    sel.setAttribute("aria-label", "Statut de " + e.nom);
+    STATUTS.forEach(function(st){
+      var o = document.createElement("option");
+      o.value = st.id; o.textContent = st.nom;
+      if (st.id === s) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener("change", function(){
+      noter(e.id, {statut: sel.value, date: donnees.date || aujourdhui()});
+      rendre();
+    });
+    actions.appendChild(sel);
+    li.appendChild(actions);
+
+    var note = document.createElement("input");
+    note.type = "text"; note.id = "note-" + e.id;
+    note.placeholder = "Nom du Directeur des Études, retour, date de séance…";
+    note.value = donnees.note || "";
+    note.setAttribute("aria-label", "Note sur " + e.nom);
+    var minuteur;
+    note.addEventListener("input", function(){
+      clearTimeout(minuteur);
+      minuteur = setTimeout(function(){ noter(e.id, {note: note.value}); }, 600);
+    });
+    li.appendChild(note);
+
+    if (donnees.date){
+      var d = document.createElement("div");
+      d.className = "date"; d.textContent = "Dernier contact : " + donnees.date;
+      li.appendChild(d);
+    }
+    return li;
+  }
+
+  function rendre(){
+    compter();
+    var actif = document.activeElement;
+    var garde = actif && actif.id ? actif.id : null;
+    var position = actif && actif.selectionStart;
+
+    liste.textContent = "";
+    var montrees = ECOLES.filter(visible);
+    if (!montrees.length){
+      var p = document.createElement("li");
+      p.className = "vide";
+      p.textContent = "Aucune école avec ce filtre.";
+      liste.appendChild(p);
+    } else {
+      montrees.forEach(function(e){ liste.appendChild(carte(e)); });
+    }
+    if (garde){
+      var repris = document.getElementById(garde);
+      if (repris){
+        repris.focus();
+        if (position != null && repris.setSelectionRange){
+          try{ repris.setSelectionRange(position, position); }catch(e){}
+        }
+      }
+    }
+  }
+
+  // --- filtres ---
+  var FILTRES = [
+    {cle:"vague", val:0, nom:"Toutes"},
+    {cle:"vague", val:1, nom:"Vague 1"},
+    {cle:"vague", val:2, nom:"Vague 2"},
+    {cle:"vague", val:3, nom:"Vague 3"},
+    {cle:"statut", val:"restant", nom:"À contacter"},
+    {cle:"statut", val:"actifs", nom:"En cours"},
+    {cle:"statut", val:"signe", nom:"Signés"}
+  ];
+  var zoneFiltres = document.getElementById("filtres");
+  FILTRES.forEach(function(f){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "puce"; b.textContent = f.nom;
+    b.setAttribute("aria-pressed", String(f.cle === "vague" ? filtreVague === f.val : false));
+    b.addEventListener("click", function(){
+      if (f.cle === "vague"){
+        filtreVague = f.val;
+      } else {
+        filtreStatut = (filtreStatut === f.val) ? "tous" : f.val;
+      }
+      zoneFiltres.querySelectorAll(".puce").forEach(function(autre, i){
+        var def = FILTRES[i];
+        autre.setAttribute("aria-pressed", String(
+          def.cle === "vague" ? filtreVague === def.val : filtreStatut === def.val
+        ));
+      });
+      rendre();
+    });
+    zoneFiltres.appendChild(b);
+  });
+
+  // --- premier rendu, puis branchement du suivi partagé ---
+  chargerLocal();
+  rendre();
+
+  (async function(){
+    var store = null;
+    try{ store = window.claude && window.claude.use ? await window.claude.use("db") : null; }
+    catch(err){ store = null; }
+
+    if (!store){
+      etat.textContent = "Suivi enregistré sur cet appareil uniquement.";
+      return;
+    }
+    db = store;
+    db.collection("suivi").onSnapshot(function(snap){
+      var frais = Object.create(null);
+      snap.docs.forEach(function(d){ frais[d.id] = d.data() || {}; });
+      suivi = frais;
+      etat.textContent = "Suivi partagé — visible sur tous vos appareils.";
+      rendre();
+    }, function(err){
+      db = null;
+      chargerLocal();
+      etat.textContent = "Suivi partagé indisponible — les changements restent sur cet appareil.";
+      rendre();
+    });
+  })();
+})();
+</script>
