@@ -7,9 +7,12 @@ Sorties : envois/whatsapp-envoi.csv et envois/emails-a-envoyer.csv
 import csv
 import json
 import pathlib
+import sys
 from urllib.parse import quote
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RACINE / "tools"))
+from segments import TEXTES, civilite, nom_affiche, segment  # noqa: E402
 EXP = json.loads((RACINE / "expediteur.json").read_text(encoding="utf-8"))
 
 # En Cote d'Ivoire, seuls 01 (Moov), 05 (MTN) et 07 (Orange) sont des prefixes mobiles.
@@ -78,16 +81,21 @@ RELANCE_J7 = (
 OBJET = "Vos étudiants utilisent déjà l'IA — personne ne leur a appris à s'en servir"
 
 
-def corps_email(ecole):
+def corps_email(ligne):
+    """Le mail est personnalise sur la filiere : le travail que rendent leurs etudiants,
+    et ce que la seance leur apporte a eux. Un mail generique ne se lit pas."""
+    ecole = nom_affiche(ligne[0])
+    textes = TEXTES[segment(ligne[1])]
+    pub, corpus = textes["public"], textes["corpus"]
     lignes = [
-        "Madame, Monsieur le Directeur des Études,",
+        civilite(ligne[10]),
         "",
-        f"Une question simple : combien d'étudiants {de(ecole)} ont rendu ce semestre un exposé "
-        "ou un rapport écrit, en partie, par une intelligence artificielle ?",
+        f"Une question simple : combien d'{pub} {de(ecole)} ont rendu ce semestre "
+        f"{textes['travaux']}, écrit en partie par une intelligence artificielle ?",
         "",
         "Vos enseignants le sentent souvent, sans pouvoir le prouver. Et c'est l'établissement "
-        "qui porte le risque — travaux uniformisés, mémoires dont on ne sait plus qui les a "
-        "écrits, valeur du diplôme discutée — alors qu'aucun étudiant n'a jamais reçu la "
+        f"qui porte le risque — travaux uniformisés, {corpus} dont on ne sait plus qui les a "
+        f"écrits, valeur du diplôme discutée — alors qu'aucun de vos {pub} n'a jamais reçu la "
         "moindre règle d'usage.",
         "",
         "Le paradoxe est là : ils se servent de cet outil tous les jours, et aucun ne sait "
@@ -96,13 +104,15 @@ def corps_email(ecole):
         "",
         "C'est exactement ce que BIG RÉUSSITE vient corriger. Une séance de 2h, animée en "
         "présentiel dans vos classes : ce qu'est réellement l'IA, comment l'utiliser sur un "
-        "travail universitaire sans tomber dans le plagiat, les cas d'usage propres à chaque "
-        "filière, et ce qu'un recruteur attend aujourd'hui. Les étudiants travaillent sur leur "
-        "propre téléphone : aucune salle informatique, aucun investissement de votre part.",
+        f"travail sans tomber dans le plagiat, et ce qu'un recruteur attend aujourd'hui. Vos {pub} "
+        "travaillent sur leur propre téléphone : aucune salle informatique, aucun "
+        "investissement de votre part.",
+        "",
+        textes["apport"],
         "",
         "Un mot sur le calendrier. Le sujet est encore neuf en Côte d'Ivoire. L'établissement "
         "qui le cadre maintenant ne règle pas seulement un problème interne : il peut l'annoncer "
-        "à ses futurs étudiants et à leurs parents, au moment précis où la question commence à "
+        f"à ses futurs {pub} et à leurs parents, au moment précis où la question commence à "
         "se poser partout. Dans un an, ce sera la norme, et plus personne n'en tirera d'avantage.",
         "",
         "Je vous propose de commencer par une classe test. Vous jugez sur pièce, et vous "
@@ -137,7 +147,7 @@ def main():
             numero = premier_mobile(l)
             if not numero:
                 continue
-            msg = message_whatsapp(l[0])
+            msg = message_whatsapp(nom_affiche(l[0]))
             lien = f"https://wa.me/225{chiffres(numero)}?text={quote(msg)}"
             w.writerow([vague(l), l[0], numero, lien, msg, RELANCE_J2, RELANCE_J7, "", "", ""])
             n += 1
@@ -145,12 +155,12 @@ def main():
     # --- E-mail ------------------------------------------------------------ #
     with open(dossier / "emails-a-envoyer.csv", "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["vague", "ecole", "destinataire", "objet", "corps", "date_envoi", "reponse"])
+        w.writerow(["vague", "ecole", "destinataire", "objet", "corps", "segment", "date_envoi"])
         m = 0
         for l in base:
             if not l[8]:
                 continue
-            w.writerow([vague(l), l[0], l[8], OBJET, corps_email(l[0]), "", ""])
+            w.writerow([vague(l), l[0], l[8], OBJET, corps_email(l), segment(l[1]), ""])
             m += 1
 
     injoignables = [l[0] for l in base if not l[8] and not premier_mobile(l)]
