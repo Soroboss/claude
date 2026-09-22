@@ -12,7 +12,7 @@ from urllib.parse import quote
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE / "tools"))
-from segments import TEXTES, civilite, nom_affiche, segment  # noqa: E402
+from segments import ACCROCHES, TEXTES, civilite, nom_affiche, segment  # noqa: E402
 EXP = json.loads((RACINE / "expediteur.json").read_text(encoding="utf-8"))
 
 # En Cote d'Ivoire, seuls 01 (Moov), 05 (MTN) et 07 (Orange) sont des prefixes mobiles.
@@ -53,29 +53,29 @@ def qui_parle():
     return f"je suis {EXP['nom']}" if EXP["nom"] != "BIG RÉUSSITE" else "je vous écris de la part de BIG RÉUSSITE"
 
 
-def message_whatsapp(ecole):
+def message_whatsapp(ecole, seg, cible):
+    """Un message WhatsApp se lit sur un telephone, entre deux reunions : l'accroche
+    porte tout, le reste tient en quatre lignes et se termine par une seule question."""
     return (
-        f"Bonjour, {qui_parle()}. Je m'adresse au Directeur des Études {de(ecole)}.\n\n"
-        "Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que "
-        "personne ne leur ait appris à s'en servir. L'établissement porte le risque, plagiat "
-        "et travaux uniformisés, sans en tirer le moindre bénéfice.\n\n"
-        "Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des "
-        "étudiants. Aucune salle informatique nécessaire.\n\n"
-        "Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront "
-        "l'annoncer à leurs futurs étudiants.\n\n"
-        "Puis-je vous envoyer le programme en 1 page ?"
+        f"{ACCROCHES[seg]}\n\n"
+        f"Bonjour, je m'adresse {'au Proviseur' if 'Proviseur' in cible else 'au Directeur des Études'} {de(ecole)}. "
+        "Personne ne leur a jamais donné la moindre règle d'usage, et c'est "
+        "l'établissement qui porte le risque.\n\n"
+        "BIG RÉUSSITE règle ça en une séance de 2h, dans votre classe, sur les téléphones "
+        f"de vos {TEXTES[seg]['public']}. Aucune salle informatique, aucun investissement.\n\n"
+        "Je vous envoie le programme en 1 page ?"
     )
 
 
 RELANCE_J2 = (
-    "Bonjour, je me permets de revenir vers vous. La question n'est pas de savoir si vos "
-    "étudiants utilisent l'IA, ils le font déjà. Elle est de savoir qui leur apprend à s'en "
-    "servir correctement. Souhaitez-vous que je vous envoie le programme ? Deux minutes de lecture."
+    "La question n'est pas de savoir si vos étudiants utilisent l'IA.\n"
+    "Elle est de savoir qui leur apprend à s'en servir.\n\n"
+    "Le programme tient en 1 page, deux minutes de lecture. Je vous l'envoie ?"
 )
 RELANCE_J7 = (
-    "Bonjour, dernière relance de ma part. Si le sujet n'est pas d'actualité pour vous cette "
-    "année, dites-le moi simplement et je n'insisterai pas. Si au contraire vous voulez en "
-    "parler, je reste disponible 15 minutes quand cela vous arrange."
+    "Dernière relance de ma part.\n\n"
+    "Si le sujet n'est pas d'actualité cette année, dites-le moi simplement, je n'insisterai pas.\n"
+    "Si au contraire vous voulez en parler, 15 minutes suffisent, quand cela vous arrange."
 )
 
 OBJET = "Vos étudiants utilisent déjà l'IA — personne ne leur a appris à s'en servir"
@@ -147,7 +147,7 @@ def main():
             numero = premier_mobile(l)
             if not numero:
                 continue
-            msg = message_whatsapp(nom_affiche(l[0]))
+            msg = message_whatsapp(nom_affiche(l[0]), segment(l[1]), l[10])
             lien = f"https://wa.me/225{chiffres(numero)}?text={quote(msg)}"
             w.writerow([vague(l), l[0], numero, lien, msg, RELANCE_J2, RELANCE_J7, "", "", ""])
             n += 1

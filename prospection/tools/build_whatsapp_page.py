@@ -9,8 +9,11 @@ import json
 import pathlib
 import re
 import unicodedata
+import sys
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RACINE / "tools"))
+from segments import ACCROCHES, TEXTES, segment  # noqa: E402
 PREFIXES_MOBILES = ("01", "05", "07")
 
 
@@ -64,6 +67,9 @@ def main():
             "num": chiffres(numero),
             "vague": vague(l),
             "sansmail": l[14] == "sans email",   # aucune adresse exploitable : WhatsApp est le seul canal
+            "accroche": ACCROCHES[segment(l[1])],
+            "public": TEXTES[segment(l[1])]["public"],
+            "cible": "au Proviseur" if "Proviseur" in l[10] else "au Directeur des Études",
         })
 
     gabarit = (RACINE / "tools" / "whatsapp_page.html").read_text(encoding="utf-8")

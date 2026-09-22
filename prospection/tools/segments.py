@@ -179,3 +179,25 @@ def nom_affiche(nom):
         if len(prefixe) <= 28:          # un sigle ou un nom court : le developpement est superflu
             court = prefixe
     return re.sub(r"\b[A-Za-z]+\b", lambda m: _ACCENTS.get(m.group(0), m.group(0)), court)
+
+
+# --- accroches WhatsApp -------------------------------------------------------- #
+# Sur WhatsApp, l'apercu ne montre que les deux premieres lignes. Si elles ne font
+# pas mal, le message n'est jamais ouvert. Chaque accroche nomme le travail precis
+# que rendent leurs etudiants, pas l'IA en general.
+
+ACCROCHES = {
+    "numerique": "Vos étudiants livrent déjà du code écrit par une IA.\nLa plupart seraient incapables de l'expliquer devant un jury.",
+    "sante": "Vos étudiants recopient déjà des informations médicales sorties d'une IA.\nSans les vérifier une seule fois.",
+    "btp": "Vos étudiants recopient déjà des notes de calcul sorties d'une IA.\nSans les refaire.",
+    "logistique": "Vos étudiants rendent déjà des études de flux dont les chiffres sortent d'une IA.\nChiffres que personne n'a contrôlés.",
+    "hotellerie": "Vos étudiants rédigent déjà leurs rapports de stage avec une IA.\nEt ils ne savent pas s'en servir pour le métier qui les attend.",
+    "agro": "Vos étudiants rendent déjà des analyses de données produites par une IA.\nSans savoir ce qu'elles valent.",
+    "commerce": "Vos étudiants rendent déjà des études de marché avec des chiffres inventés par une IA.\nEt ils ne le savent même pas.",
+    "communication": "Vos étudiants produisent déjà leurs dossiers avec une IA.\nSans se douter de ce que ça pose comme problème de droits.",
+    "ingenieur": "Vos étudiants rendent déjà des notes techniques écrites par une IA.\nSans savoir refaire le calcul qu'il y a derrière.",
+    "universite": "Vos étudiants rendent déjà des exposés et des mémoires écrits par une IA.\nVos enseignants le voient sans pouvoir le prouver.",
+    "lycee": "Vos élèves rendent déjà des exposés écrits par une IA.\nVos enseignants le voient sans pouvoir le prouver.",
+    "formation": "Vos apprenants utilisent déjà l'IA tous les jours.\nAucun ne sait s'en servir pour le métier qu'il vise.",
+    "defaut": "Vos étudiants rendent déjà des travaux écrits par une IA.\nVos enseignants le voient sans pouvoir le prouver.",
+}

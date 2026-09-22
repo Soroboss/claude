@@ -176,21 +176,18 @@
     return (VOYELLES.indexOf(nom.charAt(0).toUpperCase()) >= 0 ? "d'" : "de ") + nom;
   }
 
-  function message(nom){
-    return "Bonjour, je vous écris de la part de BIG RÉUSSITE. Je m'adresse au Directeur des Études "
-      + de(nom) + ".\n\n"
-      + "Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que personne "
-      + "ne leur ait appris à s'en servir. L'établissement porte le risque, plagiat et travaux "
-      + "uniformisés, sans en tirer le moindre bénéfice.\n\n"
-      + "Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des "
-      + "étudiants. Aucune salle informatique nécessaire.\n\n"
-      + "Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront "
-      + "l'annoncer à leurs futurs étudiants.\n\n"
-      + "Puis-je vous envoyer le programme en 1 page ?";
+  function message(e){
+    return e.accroche + "\n\n"
+      + "Bonjour, je m'adresse " + e.cible + " " + de(e.nom) + ". "
+      + "Personne ne leur a jamais donné la moindre règle d'usage, et c'est "
+      + "l'établissement qui porte le risque.\n\n"
+      + "BIG RÉUSSITE règle ça en une séance de 2h, dans votre classe, sur les téléphones "
+      + "de vos " + e.public + ". Aucune salle informatique, aucun investissement.\n\n"
+      + "Je vous envoie le programme en 1 page ?";
   }
 
   function lien(e){
-    return "https://wa.me/225" + e.num + "?text=" + encodeURIComponent(message(e.nom));
+    return "https://wa.me/225" + e.num + "?text=" + encodeURIComponent(message(e));
   }
 
   // --- suivi : db partagé si disponible, sinon stockage local du navigateur ---

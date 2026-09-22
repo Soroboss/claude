@@ -11,21 +11,27 @@ par école. Le suivi est partagé entre tous tes appareils.
 
 `envois/whatsapp-envoi.csv` contient les mêmes messages en tableau, pour un usage hors ligne.
 
-**Message envoyé :**
+**Message envoyé** — l'accroche change selon la filière de l'école :
 
-> Bonjour, je vous écris de la part de BIG RÉUSSITE. Je m'adresse au Directeur des Études d'[ÉCOLE].
+> Vos étudiants livrent déjà du code écrit par une IA.
+> La plupart seraient incapables de l'expliquer devant un jury.
 >
-> Vos étudiants utilisent déjà l'IA pour leurs exposés et leurs rapports, sans que personne ne leur
-> ait appris à s'en servir. L'établissement porte le risque, plagiat et travaux uniformisés, sans en
-> tirer le moindre bénéfice.
+> Bonjour, je m'adresse au Directeur des Études d'[ÉCOLE]. Personne ne leur a jamais donné la
+> moindre règle d'usage, et c'est l'établissement qui porte le risque.
 >
-> Nous corrigeons cela en une séance de 2h, dans vos classes, sur les téléphones des étudiants.
-> Aucune salle informatique nécessaire.
+> BIG RÉUSSITE règle ça en une séance de 2h, dans votre classe, sur les téléphones de vos
+> étudiants. Aucune salle informatique, aucun investissement.
 >
-> Le sujet est encore neuf ici : les premiers établissements à le cadrer pourront l'annoncer à
-> leurs futurs étudiants.
->
-> Puis-je vous envoyer le programme en 1 page ?
+> Je vous envoie le programme en 1 page ?
+
+**Pourquoi les deux premières lignes comptent plus que tout le reste :** l'aperçu WhatsApp
+n'affiche que celles-là. Si elles ne piquent pas, le message n'est jamais ouvert. Chaque filière
+a donc son accroche propre — code non défendable pour le numérique, informations médicales non
+vérifiées pour la santé, notes de calcul recopiées pour le BTP, chiffres inventés pour le
+commerce. 13 accroches distinctes, dans `tools/segments.py`.
+
+⚠️ **Le message promet un programme en 1 page. Il faut pouvoir l'envoyer dans l'heure.**
+Les prompts qui le fabriquent sont dans `programme-premium/`.
 
 Relance à J+2, puis à J+7, puis on arrête. Les deux textes sont dans la page et dans le CSV.
 

@@ -20,6 +20,8 @@
 | `envois/emails-a-envoyer.csv` | **68 écoles** : destinataire, objet et corps prêts, pour publipostage ou copier-coller |
 | `expediteur.json` | Ton identité d'expéditeur. La modifier puis relancer `tools/generer_envois.py` régénère tous les messages |
 | `tools/generer_envois.py` | Génère les deux fichiers d'envoi depuis la base |
+| `programme-premium/prompts.md` | Les 5 prompts qui fabriquent le programme promis dans les messages : programme 1 page, proposition chiffrée, gabarit visuel, kit de prompts pour les étudiants, attestation |
+| `programme-premium/prompts-par-ecole.csv` | Le prompt du programme **déjà rempli** pour chacune des 105 écoles : nom, ville, filière, travaux réels, interlocuteur. Copier-coller, rien à remplir |
 | `tools/merge_contacts.py` | Fusionne un nouveau lot de contacts dans la base : dédoublonnage, contrôle de format, normalisation des numéros |
 
 ## État de la base
@@ -175,3 +177,28 @@ on la trouve publiée quelque part. Deviner `contact@` + domaine est exactement 
 4. `boite pleine` — en dernier, elle peut rebondir à nouveau
 
 Un établissement qui partage sa boîte avec un autre campus ne reçoit qu'un seul mail.
+
+## Le message WhatsApp
+
+L'aperçu WhatsApp n'affiche que les deux premières lignes. Le message est donc bâti autour
+d'elles : une accroche qui nomme le travail réel que rendent leurs étudiants, pas l'IA en
+général. **13 accroches distinctes**, une par filière, dans `tools/segments.py`.
+
+Le message complet fait environ 475 caractères — quatre blocs courts et une seule question.
+L'interlocuteur et le mot désignant le public s'adaptent : « au Proviseur… vos élèves » pour
+un lycée, « au Directeur des Études… vos étudiants » ailleurs.
+
+## Le programme premium
+
+Le message se termine par « Je vous envoie le programme en 1 page ? ». **Ce programme doit
+partir dans l'heure qui suit la réponse**, sinon l'intérêt retombe.
+
+`programme-premium/prompts.md` contient les 5 prompts qui le produisent, et
+`prompts-par-ecole.csv` les livre déjà remplis école par école.
+
+Règle commune à tous : **aucune statistique inventée**. Un Directeur des Études qui demande la
+source d'un « 87 % des étudiants » fait perdre le marché qui venait d'être décroché. L'argument
+tient sur un constat qu'il vérifie lui-même dans son propre établissement.
+
+Ordre d'usage : programme d'abord, prix seulement s'il le demande, kit et attestations une fois
+la séance calée.
