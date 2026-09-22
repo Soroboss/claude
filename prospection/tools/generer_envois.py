@@ -155,12 +155,19 @@ def main():
     # --- E-mail ------------------------------------------------------------ #
     with open(dossier / "emails-a-envoyer.csv", "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["vague", "ecole", "destinataire", "objet", "corps", "segment", "date_envoi"])
+        w.writerow(["vague", "ecole", "destinataire", "type_email", "etat_email", "objet", "corps", "segment", "date_envoi"])
         m = 0
-        for l in base:
-            if not l[8]:
+        # Une adresse morte a deja rebondi : la relancer ne fait que degrader la reputation
+        # de l'expediteur. Les adresses gratuites passent en premier : sur ce lot, elles ont
+        # echoue a 13 % contre 32 % pour les domaines propres.
+        envoyables = [l for l in base if l[8] and l[14] != "morte"]
+        envoyables.sort(key=lambda l: (0 if l[13] == "gratuite" else 1, vague(l), l[0].lower()))
+        deja = set()
+        for l in envoyables:
+            if l[8].lower() in deja:      # meme boite pour deux campus : un seul mail
                 continue
-            w.writerow([vague(l), l[0], l[8], OBJET, corps_email(l), segment(l[1]), ""])
+            deja.add(l[8].lower())
+            w.writerow([vague(l), l[0], l[8], l[13], l[14], OBJET, corps_email(l), segment(l[1]), ""])
             m += 1
 
     injoignables = [l[0] for l in base if not l[8] and not premier_mobile(l)]

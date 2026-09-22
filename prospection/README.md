@@ -120,3 +120,29 @@ modifier `expediteur.json` puis relancer :
     python3 tools/generer_envois.py
 
 Tous les messages WhatsApp et e-mail sont régénérés avec la nouvelle signature.
+
+## Qualité des adresses e-mail — mesuré, pas supposé
+
+Un premier envoi réel a servi de test grandeur nature. Résultat sur 68 adresses :
+
+| Type d'adresse | Nombre | Mortes | Boîte pleine | Taux d'échec |
+|---|---|---|---|---|
+| Domaine propre (`info@ecole.ci`) | 53 | 12 | 5 | **32 %** |
+| Gratuite (gmail, yahoo, hotmail, aviso) | 15 | 2 | 0 | **13 %** |
+
+**Une adresse en domaine propre échoue 2,5 fois plus souvent.** Les domaines des petites écoles
+ivoiriennes expirent, les boîtes `info@` sont abandonnées ou saturées, alors qu'un compte Gmail
+reste relevé par une personne réelle.
+
+**Règle retenue :** à adresse égale, toujours préférer une boîte gratuite trouvée sur une page
+officielle de l'école à une adresse `contact@` trouvée sur un annuaire. Ne jamais déduire une
+adresse d'un nom de domaine — c'est exactement ce qui a rebondi.
+
+Deux colonnes portent cette information dans `ecoles-ci-contacts.csv` :
+
+- `type_email` : `gratuite` ou `domaine propre`
+- `etat_email` : `valide`, `morte` (a rebondi, ne plus jamais écrire), `boite pleine`
+  (l'adresse existe mais sature, réessayer plus tard), `sans email`
+
+`tools/generer_envois.py` exclut désormais les adresses mortes, fait passer les adresses
+gratuites en premier, et n'écrit qu'une fois aux établissements qui partagent une boîte.

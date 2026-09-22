@@ -8,9 +8,10 @@ import re
 import sys
 import unicodedata
 
-COLS = 13
+COLS = 15
 HEADER = ("ecole;type;statut;ville_commune;adresse;telephone_1;telephone_2;"
-          "whatsapp;email;site_web;interlocuteur_cible;fiabilite;source")
+          "whatsapp;email;site_web;interlocuteur_cible;fiabilite;source;"
+          "type_email;etat_email")
 
 
 def cle(nom):
