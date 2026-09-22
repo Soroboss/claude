@@ -1,0 +1,6 @@
+{
+  "nom": "BIG RÉUSSITE",
+  "telephone": "",
+  "email": "soroboss.bossimpact@gmail.com",
+  "_note": "Renseigner nom et telephone puis relancer : python3 tools/generer_envois.py"
+}

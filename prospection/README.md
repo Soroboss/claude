@@ -16,6 +16,10 @@
 | `offre-initiation-ia.md` | L'offre : une séance de 2h par classe, prix par élève, règles de négociation de la 2e séance, circuit de décision |
 | `scripts-approche.md` | Scripts WhatsApp / appel / e-mail + traitement d'objections + ordre d'attaque |
 | `suivi-appels.csv` | **Feuille de prospection à remplir** : 105 lignes classées en 3 vagues, colonnes de suivi (nom du DE, statut, montant par élève, nb d'élèves, nb de séances négocié, nb de classes, montant attendu) |
+| `envois/whatsapp-envoi.csv` | **73 écoles** : lien `wa.me` cliquable avec le message déjà rédigé et personnalisé, plus les deux relances |
+| `envois/emails-a-envoyer.csv` | **68 écoles** : destinataire, objet et corps prêts, pour publipostage ou copier-coller |
+| `expediteur.json` | Ton identité d'expéditeur. La modifier puis relancer `tools/generer_envois.py` régénère tous les messages |
+| `tools/generer_envois.py` | Génère les deux fichiers d'envoi depuis la base |
 | `tools/merge_contacts.py` | Fusionne un nouveau lot de contacts dans la base : dédoublonnage, contrôle de format, normalisation des numéros |
 
 ## État de la base
@@ -90,3 +94,29 @@ références pointent vers un onglet et une plage existants, aucune fonction non
 rejeu de leur logique en Python sur 13 cas de test. LibreOffice n'étant pas utilisable dans
 l'environnement de génération, les valeurs mises en cache sont vides : elles se calculent à
 l'ouverture dans Google Sheets ou Excel.
+
+## Canaux d'envoi
+
+| Canal | Écoles joignables | Pourquoi ce nombre |
+|---|---|---|
+| E-mail | 68 | Les écoles dont un e-mail a été trouvé |
+| WhatsApp | 73 | Uniquement les numéros **mobiles** : en Côte d'Ivoire seuls les préfixes 01 (Moov), 05 (MTN) et 07 (Orange) ont un compte WhatsApp. Un fixe en 27 n'en a pas — lui envoyer un lien `wa.me` ne mène nulle part |
+| Ni l'un ni l'autre | 10 | Fixe seul : à traiter par appel, avec le script §2 de `scripts-approche.md` |
+
+### Comment utiliser `whatsapp-envoi.csv`
+
+Ouvrir le fichier dans Google Sheets sur le téléphone, cliquer sur le lien de la colonne
+`lien_envoi_clic` : WhatsApp s'ouvre sur la bonne conversation avec le message déjà écrit.
+Il ne reste qu'à envoyer. Les colonnes `relance_J2` et `relance_J7` contiennent les deux
+relances à copier-coller aux bonnes dates.
+
+Les 73 liens ont été contrôlés : tous bien formés, aucun ne pointe vers une ligne fixe.
+
+### Personnaliser l'expéditeur
+
+Les messages sont signés « BIG RÉUSSITE ». Pour signer de ton nom et ajouter ton numéro,
+modifier `expediteur.json` puis relancer :
+
+    python3 tools/generer_envois.py
+
+Tous les messages WhatsApp et e-mail sont régénérés avec la nouvelle signature.
