@@ -63,6 +63,7 @@ def main():
             "tel": numero,
             "num": chiffres(numero),
             "vague": vague(l),
+            "sansmail": l[14] == "sans email",   # aucune adresse exploitable : WhatsApp est le seul canal
         })
 
     gabarit = (RACINE / "tools" / "whatsapp_page.html").read_text(encoding="utf-8")

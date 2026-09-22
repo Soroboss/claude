@@ -94,6 +94,11 @@
     padding:5px 7px; margin-top:1px;
   }
   .nom{font-weight:600; font-size:15px; line-height:1.3; overflow-wrap:anywhere}
+  .sansmail{
+    display:inline-block; margin-left:7px; vertical-align:2px;
+    font:600 9.5px/1 "IBM Plex Sans",sans-serif; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--t-refus-e); background:var(--t-refus-f); border-radius:4px; padding:4px 6px;
+  }
   .meta{color:var(--doux); font-size:12.5px; margin:0 0 11px; overflow-wrap:anywhere}
   .meta b{font-weight:500; font-variant-numeric:tabular-nums; color:var(--encre)}
 
@@ -231,6 +236,7 @@
     if (filtreStatut === "tous") return true;
     if (filtreStatut === "restant") return s === "a-contacter";
     if (filtreStatut === "actifs") return s === "reponse" || s === "rdv";
+    if (filtreStatut === "sansmail") return e.sansmail;
     return s === filtreStatut;
   }
 
@@ -268,6 +274,13 @@
     v.className = "vague"; v.textContent = "V" + e.vague;
     var nom = document.createElement("div");
     nom.className = "nom"; nom.textContent = e.nom;
+    if (e.sansmail){
+      var pastille = document.createElement("span");
+      pastille.className = "sansmail";
+      pastille.textContent = "mail impossible";
+      pastille.title = "Aucune adresse e-mail exploitable : WhatsApp est le seul canal";
+      nom.appendChild(pastille);
+    }
     tete.appendChild(v); tete.appendChild(nom);
     li.appendChild(tete);
 
@@ -366,7 +379,8 @@
     {cle:"vague", val:3, nom:"Vague 3"},
     {cle:"statut", val:"restant", nom:"À contacter"},
     {cle:"statut", val:"actifs", nom:"En cours"},
-    {cle:"statut", val:"signe", nom:"Signés"}
+    {cle:"statut", val:"signe", nom:"Signés"},
+    {cle:"statut", val:"sansmail", nom:"Mail impossible"}
   ];
   var zoneFiltres = document.getElementById("filtres");
   FILTRES.forEach(function(f){
