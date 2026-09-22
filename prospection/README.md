@@ -141,8 +141,37 @@ adresse d'un nom de domaine — c'est exactement ce qui a rebondi.
 Deux colonnes portent cette information dans `ecoles-ci-contacts.csv` :
 
 - `type_email` : `gratuite` ou `domaine propre`
-- `etat_email` : `valide`, `morte` (a rebondi, ne plus jamais écrire), `boite pleine`
-  (l'adresse existe mais sature, réessayer plus tard), `sans email`
+- `etat_email` : `valide` (a déjà délivré), `a verifier` (trouvée après un rebond, jamais
+  testée), `boite pleine` (l'adresse existe mais sature), `sans email`. Une adresse qui a
+  rebondi définitivement est **retirée** du fichier, pas conservée : la garder ne pouvait que
+  produire un nouveau rebond.
 
 `tools/generer_envois.py` exclut désormais les adresses mortes, fait passer les adresses
 gratuites en premier, et n'écrit qu'une fois aux établissements qui partagent une boîte.
+
+## Lire le motif du rebond, pas seulement le rebond
+
+Les 19 échecs recouvrent deux situations qui n'appellent pas la même suite :
+
+**Domaine introuvable** — le domaine n'existe plus, aucune adresse dessus ne fonctionnera jamais.
+Concerne `geige.ci`, `isfmi.net`, `groupeaist.net`, `uigb.org`, `isacm.ci`, `ites.ci`,
+`groupelasorbonne.com`. Seule issue : une autre adresse, sur un autre domaine.
+
+**Boîte introuvable** (`550 No Such User`, `5.1.1`) — le serveur du domaine a **répondu**, donc
+le domaine est vivant : c'est la boîte seule qui n'existe pas. Concerne `cofecesa.net`,
+`groupehetec.com`, `gestpci.com`, `ita-education.ci`, et deux comptes gratuits mal saisis.
+Une autre boîte sur le même domaine peut parfaitement fonctionner — mais on ne la devine pas,
+on la trouve publiée quelque part. Deviner `contact@` + domaine est exactement ce qui a échoué.
+
+**Boîte pleine** — l'adresse existe et sature. Elle reste dans le fichier, en fin de file d'envoi.
+
+## Ordre d'envoi
+
+`tools/generer_envois.py` classe la file par probabilité de délivrance :
+
+1. `valide` + gratuite — a déjà délivré, et sur le type d'adresse le plus fiable
+2. `valide` + domaine propre
+3. `a verifier` — trouvée après un rebond, jamais testée
+4. `boite pleine` — en dernier, elle peut rebondir à nouveau
+
+Un établissement qui partage sa boîte avec un autre campus ne reçoit qu'un seul mail.

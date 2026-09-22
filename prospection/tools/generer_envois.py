@@ -160,8 +160,14 @@ def main():
         # Une adresse morte a deja rebondi : la relancer ne fait que degrader la reputation
         # de l'expediteur. Les adresses gratuites passent en premier : sur ce lot, elles ont
         # echoue a 13 % contre 32 % pour les domaines propres.
+        # Ordre d'envoi : une adresse qui a deja delivre passe avant une adresse jamais
+        # testee, qui passe avant une boite saturee susceptible de rebondir encore.
+        # A etat egal, les adresses gratuites d'abord : 13 % d'echec contre 32 %.
+        rang_etat = {"valide": 0, "a verifier": 1, "boite pleine": 2}
         envoyables = [l for l in base if l[8] and l[14] != "morte"]
-        envoyables.sort(key=lambda l: (0 if l[13] == "gratuite" else 1, vague(l), l[0].lower()))
+        envoyables.sort(key=lambda l: (rang_etat.get(l[14], 3),
+                                       0 if l[13] == "gratuite" else 1,
+                                       vague(l), l[0].lower()))
         deja = set()
         for l in envoyables:
             if l[8].lower() in deja:      # meme boite pour deux campus : un seul mail
