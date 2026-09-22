@@ -195,10 +195,10 @@ tb.sheet_view.showGridLines = False
 bc = wb.create_sheet("Base contacts")
 tete = ["Ecole", "Type", "Statut", "Ville / Commune", "Adresse", "Telephone 1",
         "Telephone 2", "WhatsApp", "Email", "Site web", "Interlocuteur cible",
-        "Fiabilite", "Source"]
+        "Fiabilite", "Source", "Type email", "Etat email"]
 bc.append(tete)
 style_entete(bc, 1, len(tete))
-largeurs(bc, [46, 42, 18, 30, 56, 19, 19, 19, 30, 28, 32, 11, 32])
+largeurs(bc, [46, 42, 18, 30, 56, 19, 19, 19, 30, 28, 32, 11, 32, 15, 13])
 for l in sorted(base, key=lambda x: (x[3].lower(), x[0].lower())):
     bc.append(l)
 for r in range(2, bc.max_row + 1):
@@ -208,8 +208,13 @@ for r in range(2, bc.max_row + 1):
         cell.border = BORDURE
     if bc.cell(row=r, column=12).value == "Haute":
         bc.cell(row=r, column=12).fill = PatternFill("solid", fgColor=VERT)
+    # L'etat de l'adresse se lit d'un coup d'oeil : une adresse jamais testee ou saturee
+    # ne se traite pas comme une adresse qui a deja delivre.
+    etat = bc.cell(row=r, column=15)
+    etat.fill = PatternFill("solid", fgColor={
+        "valide": VERT, "a verifier": JAUNE, "boite pleine": "FCE4E4"}.get(etat.value, GRIS))
 bc.freeze_panes = "A2"
-bc.auto_filter.ref = f"A1:M{bc.max_row}"
+bc.auto_filter.ref = f"A1:O{bc.max_row}"
 
 # ---- 5. Offre et tarifs --------------------------------------------------- #
 of = wb.create_sheet("Offre et tarifs")

@@ -79,7 +79,8 @@ def charger(chemin, avec_entete):
             if len(champs) != COLS:
                 print(f"  ! ignoree ({len(champs)} colonnes au lieu de {COLS}): {brut[:70]}", file=sys.stderr)
                 continue
-            lignes.append([c.strip() for c in champs])
+            champs = [c.strip().replace(";", ",") for c in champs]   # un ; dans un champ casserait le fichier
+            lignes.append(champs)
     return lignes
 
 
