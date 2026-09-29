@@ -1,6 +1,9 @@
 {
   "nom": "BIG RÉUSSITE",
+  "prenom": "",
+  "fonction": "responsable formation",
   "telephone": "",
   "email": "soroboss.bossimpact@gmail.com",
-  "_note": "Renseigner nom et telephone puis relancer : python3 tools/generer_envois.py"
+  "ville": "Abidjan",
+  "_note": "prenom et fonction ouvrent chaque message WhatsApp. Tant que 'prenom' est vide, les generateurs affichent un avertissement et se replient sur une formule sans nom. Renseigner puis relancer : python3 tools/generer_envois.py && python3 tools/build_whatsapp_page.py"
 }

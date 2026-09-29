@@ -13,6 +13,18 @@ from urllib.parse import quote
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE / "tools"))
 from segments import ACCROCHES, TEXTES, civilite, nom_affiche, segment  # noqa: E402
+
+
+def lire_segment(l):
+    """Le segment est une COLONNE de la base (indice 15), pas un recalcul.
+
+    Il resulte du vote par filiere de la liste officielle ; le rededuire du texte
+    de la colonne 'type' donnait un autre resultat pour 61 % des ecoles (et faisait
+    remonter 'agro' de 10 a 157). On ne recalcule qu'a defaut de colonne remplie.
+    """
+    if len(l) > 15 and l[15].strip():
+        return l[15].strip()
+    return segment(l[1])
 EXP = json.loads((RACINE / "expediteur.json").read_text(encoding="utf-8"))
 
 # En Cote d'Ivoire, seuls 01 (Moov), 05 (MTN) et 07 (Orange) sont des prefixes mobiles.
@@ -50,20 +62,43 @@ def signature():
 
 
 def qui_parle():
-    return f"je suis {EXP['nom']}" if EXP["nom"] != "BIG RÉUSSITE" else "je vous écris de la part de BIG RÉUSSITE"
+    """Un numero inconnu qui attaque sans se presenter se fait bloquer."""
+    prenom, fonction = EXP.get("prenom", "").strip(), EXP.get("fonction", "").strip()
+    maison = f"{EXP['nom']}, organisme de formation à {EXP.get('ville', 'Abidjan')}"
+    if not prenom:
+        return f"je vous écris de la part de {maison}"
+    return f"je suis {prenom}, {fonction} chez {maison}" if fonction else f"je suis {prenom}, de {maison}"
+
+
+def alerte_signataire():
+    if not EXP.get("prenom", "").strip():
+        print("  /!\\  expediteur.json : 'prenom' est vide. Les messages partent sans nom de"
+              " personne. Renseigner prenom + fonction, puis relancer.")
 
 
 def message_whatsapp(ecole, seg, cible):
-    """Un message WhatsApp se lit sur un telephone, entre deux reunions : l'accroche
-    porte tout, le reste tient en quatre lignes et se termine par une seule question."""
+    """Message de prospection WhatsApp, en six temps.
+
+    L'ordre est commercial, pas cosmetique : on se presente AVANT d'accrocher,
+    l'accroche pose un probleme que le lecteur verifie chez lui, l'offre tient en
+    une phrase, la classe test retire le risque, et la derniere ligne demande une
+    decision minuscule et datee - pas l'autorisation d'envoyer un document.
+    Aucun montant : le prix se discute pendant l'appel que cette question declenche.
+    """
+    titre = "Proviseur" if "Proviseur" in cible else "Directeur des Études"
+    public = TEXTES[seg]["public"]
     return (
+        f"Bonjour, {qui_parle()}.\n"
+        f"Je m'adresse au {titre} {de(ecole)}.\n\n"
         f"{ACCROCHES[seg]}\n\n"
-        f"Bonjour, je m'adresse {'au Proviseur' if 'Proviseur' in cible else 'au Directeur des Études'} {de(ecole)}. "
-        "Personne ne leur a jamais donné la moindre règle d'usage, et c'est "
-        "l'établissement qui porte le risque.\n\n"
-        "BIG RÉUSSITE règle ça en une séance de 2h, dans votre classe, sur les téléphones "
-        f"de vos {TEXTES[seg]['public']}. Aucune salle informatique, aucun investissement.\n\n"
-        "Je vous envoie le programme en 1 page ?"
+        "Aucune règle d'usage ne leur a été donnée, et c'est l'établissement qui "
+        "porte le risque.\n\n"
+        "Nous traitons ce point en une séance de 2h, dans vos classes, sur les "
+        f"téléphones de vos {public} : aucune salle informatique, aucun matériel "
+        "à prévoir.\n\n"
+        "Commençons par une classe test : vous jugez sur pièce avant d'engager "
+        "la suite.\n\n"
+        "Quel jour cette semaine puis-je vous appeler 5 minutes ?"
     )
 
 
@@ -85,7 +120,7 @@ def corps_email(ligne):
     """Le mail est personnalise sur la filiere : le travail que rendent leurs etudiants,
     et ce que la seance leur apporte a eux. Un mail generique ne se lit pas."""
     ecole = nom_affiche(ligne[0])
-    textes = TEXTES[segment(ligne[1])]
+    textes = TEXTES[lire_segment(ligne)]
     pub, corpus = textes["public"], textes["corpus"]
     lignes = [
         civilite(ligne[10]),
@@ -151,7 +186,7 @@ def main():
             numero = premier_mobile(l)
             if not numero:
                 continue
-            msg = message_whatsapp(nom_affiche(l[0]), segment(l[1]), l[10])
+            msg = message_whatsapp(nom_affiche(l[0]), lire_segment(l), l[10])
             lien = f"https://wa.me/225{chiffres(numero)}?text={quote(msg)}"
             w.writerow([vague(l), l[0], numero, lien, msg, RELANCE_J2, RELANCE_J7, "", "", ""])
             n += 1
@@ -177,7 +212,7 @@ def main():
             if l[8].lower() in deja:      # meme boite pour deux campus : un seul mail
                 continue
             deja.add(l[8].lower())
-            w.writerow([vague(l), l[0], l[8], l[13], l[14], OBJET, corps_email(l), segment(l[1]), ""])
+            w.writerow([vague(l), l[0], l[8], l[13], l[14], OBJET, corps_email(l), lire_segment(l), ""])
             m += 1
 
     injoignables = [l[0] for l in base if not l[8] and not premier_mobile(l)]
@@ -185,6 +220,7 @@ def main():
     print(f"envois/emails-a-envoyer.csv  : {m} ecoles avec un email")
     print(f"ni email ni mobile           : {len(injoignables)} -> {', '.join(injoignables[:4])}...")
     print(f"signature utilisee           : {signature()}")
+    alerte_signataire()
 
 
 if __name__ == "__main__":

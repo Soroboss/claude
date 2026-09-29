@@ -13,7 +13,8 @@ import sys
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE / "tools"))
-from segments import ACCROCHES, TEXTES, segment  # noqa: E402
+from generer_envois import lire_segment, message_whatsapp
+from segments import nom_affiche, ACCROCHES, TEXTES, segment  # noqa: E402
 PREFIXES_MOBILES = ("01", "05", "07")
 
 
@@ -67,9 +68,10 @@ def main():
             "num": chiffres(numero),
             "vague": vague(l),
             "sansmail": l[14] == "sans email",   # aucune adresse exploitable : WhatsApp est le seul canal
-            "accroche": ACCROCHES[segment(l[1])],
-            "public": TEXTES[segment(l[1])]["public"],
-            "cible": "au Proviseur" if "Proviseur" in l[10] else "au Directeur des Études",
+            # Le message est calcule ici, par la MEME fonction que le CSV d'envoi.
+            # Il etait auparavant reecrit en JavaScript dans le gabarit : deux copies
+            # du meme texte, qui divergeaient des qu'on en modifiait une.
+            "message": message_whatsapp(nom_affiche(l[0]), lire_segment(l), l[10]),
         })
 
     gabarit = (RACINE / "tools" / "whatsapp_page.html").read_text(encoding="utf-8")

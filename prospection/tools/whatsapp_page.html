@@ -171,23 +171,10 @@
     {id:"injoignable", nom:"Injoignable"}
   ];
 
-  var VOYELLES = "AEIOUÉÈÊÀÂÎÔÛ";
-  function de(nom){
-    return (VOYELLES.indexOf(nom.charAt(0).toUpperCase()) >= 0 ? "d'" : "de ") + nom;
-  }
-
-  function message(e){
-    return e.accroche + "\n\n"
-      + "Bonjour, je m'adresse " + e.cible + " " + de(e.nom) + ". "
-      + "Personne ne leur a jamais donné la moindre règle d'usage, et c'est "
-      + "l'établissement qui porte le risque.\n\n"
-      + "BIG RÉUSSITE règle ça en une séance de 2h, dans votre classe, sur les téléphones "
-      + "de vos " + e.public + ". Aucune salle informatique, aucun investissement.\n\n"
-      + "Je vous envoie le programme en 1 page ?";
-  }
-
+  // Le message vient tel quel du generateur Python (message_whatsapp), qui sert
+  // aussi au CSV d'envoi. Ne pas le reconstruire ici : deux copies divergent.
   function lien(e){
-    return "https://wa.me/225" + e.num + "?text=" + encodeURIComponent(message(e));
+    return "https://wa.me/225" + e.num + "?text=" + encodeURIComponent(e.message);
   }
 
   // --- suivi : db partagé si disponible, sinon stockage local du navigateur ---

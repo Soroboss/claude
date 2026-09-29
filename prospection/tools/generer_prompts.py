@@ -10,6 +10,7 @@ import sys
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE / "tools"))
+from generer_envois import lire_segment  # source unique du segment
 from segments import TEXTES, nom_affiche, segment  # noqa: E402
 
 # Libelle de filiere lisible, deduit du segment : le type brut de la base ne se met pas
@@ -63,7 +64,7 @@ def main():
         w = csv.writer(f)
         w.writerow(["ecole", "filiere", "prompt_programme"])
         for l in base:
-            seg = segment(l[1])
+            seg = lire_segment(l)
             t = TEXTES[seg]
             w.writerow([
                 l[0],
