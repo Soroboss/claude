@@ -170,15 +170,166 @@ _ACCENTS = {
 }
 
 
+# --- noms d'etablissement dans une phrase --------------------------------------- #
+# La liste MESRS ecrit 613 noms sur 690 en CAPITALES. Recopies tels quels, ils
+# donnaient « au Directeur des Etudes d'INSTITUT SUPERIEUR DE ... » : un nom crie,
+# et une preposition fausse. On les remet en casse francaise, sigles conserves.
+
+# Sigles de 5 lettres ou plus : impossibles a distinguer d'un mot sans liste.
+_SIGLES = set("""
+ESBTP ESCAM ESCAMT ESCOGET ESMAT ESMIT HETEC IHETT ISFCG ISFMI ISFPT ISTCI CERCO
+AGEFOP AGITEL ARSTM ATSAM CAFOP CEFAT CEFIAT CFOMIS CIFEC ECOFORP EPMACI ESATIC ESCOM
+ESEPT ESETEC ESFIT ESICOM ESIGE ESMCT ESTAN ESTEAI FICOGES GEIGE GESTPCI GISTECOM
+ICOGES IESTP IFORAS IFPAM IIPEA IISAN IMOTEP INFAS INPRAT INSAAC INSCP INSTEC IPNETP
+ISACM ISAECI ISCAE ISFIA ISTAM ISTEA MAAXIT MUPES SODEC UNIHTEC UNISAT ENSIT EYLIM
+EMATECH CESTIA AVIDE UICI UIST
+""".split())
+
+# Mots de 4 lettres ou moins qui sont des mots ou des noms, pas des sigles.
+_MOTS_COURTS = set("""
+AND ART ARTS AUX BOWL CAMP COTE DAME DATA EURO FOI HIGH MAN MER MONT NEUF PAIX POLE
+PONT PORT POUR ROI SAN SUD SUP ZONE DIVO JEAN PAUL HUGO FRED ADAM LAMA KOKO LOKO
+ZADI YAPI MONA KADI ACKA AGBE AKA ATSE INZA YOH DION ONYX CITE VIE NEW THE
+""".split())
+
+_MINUSCULES = {"de", "du", "des", "la", "le", "les", "et", "en", "au", "aux", "sur",
+               "pour", "par", "a", "of", "and", "the"}
+
+# Fautes de frappe de la source, sans ambiguite possible.
+_CORRECTIONS = {"INSITUT": "INSTITUT", "INSTIUT": "INSTITUT", "INSTITU": "INSTITUT",
+                "SUPEREIRUR": "SUPERIEUR", "ECOEL": "ECOLE"}
+
+# Cle : forme en capitales sans accent. Valeur : forme correcte.
+_ACCENTUES = {k.upper(): v for k, v in {
+    "Academie": "Académie", "Appliquee": "Appliquée", "Appliquees": "Appliquées",
+    "Avancee": "Avancée", "Avancees": "Avancées", "Batiment": "Bâtiment", "Bouake": "Bouaké",
+    "Bouafle": "Bouaflé", "Carrieres": "Carrières", "Chaussees": "Chaussées",
+    "College": "Collège", "Competences": "Compétences", "Comptabilite": "Comptabilité",
+    "Coeur": "Cœur", "Developpement": "Développement", "Duekoue": "Duékoué", "Ecole": "École",
+    "Ecoles": "Écoles", "Econometrie": "Économétrie", "Economie": "Économie",
+    "Economique": "Économique", "Economiques": "Économiques", "Education": "Éducation",
+    "Elite": "Élite", "Elites": "Élites", "Energie": "Énergie", "Energetique": "Énergétique",
+    "Esperance": "Espérance", "Etude": "Étude", "Etudes": "Études", "Galilee": "Galilée",
+    "General": "Général", "Generale": "Générale", "Genie": "Génie", "Geomatique": "Géomatique",
+    "Hotelier": "Hôtelier", "Hoteliere": "Hôtelière", "Hotellerie": "Hôtellerie",
+    "Ingenierie": "Ingénierie", "Ingenieries": "Ingénieries", "Ingenieur": "Ingénieur",
+    "Ingenieurs": "Ingénieurs", "Jaures": "Jaurès", "Mecanique": "Mécanique",
+    "Metier": "Métier", "Metiers": "Métiers", "Marahoue": "Marahoué", "Numerique": "Numérique",
+    "Numeriques": "Numériques", "Phenix": "Phénix", "Poincare": "Poincaré", "Pole": "Pôle",
+    "Preparatoires": "Préparatoires", "Presbyterien": "Presbytérien",
+    "Presentielle": "Présentielle", "Prive": "Privé", "Privee": "Privée", "Progres": "Progrès",
+    "Proselyte": "Prosélyte", "Regional": "Régional", "Regionale": "Régionale",
+    "Sacre": "Sacré", "Sante": "Santé", "Securite": "Sécurité", "Seguela": "Séguéla",
+    "Speciale": "Spéciale", "Specialites": "Spécialités", "Strategies": "Stratégies",
+    "Succes": "Succès", "Superieur": "Supérieur", "Superieure": "Supérieure",
+    "Superieures": "Supérieures", "Superieurs": "Supérieurs",
+    "Telecommunication": "Télécommunication", "Telecommunications": "Télécommunications",
+    "Therese": "Thérèse", "Tiassale": "Tiassalé", "Universite": "Université",
+    "Cote": "Côte", "Odienne": "Odienné", "Adjame": "Adjamé", "Angre": "Angré",
+    "Adzope": "Adzopé", "Azaguie": "Azaguié", "Soubre": "Soubré", "Attecoube": "Attécoubé",
+    "Bouet": "Bouët", "Eburnie": "Éburnie", "Etablissement": "Établissement",
+    "Media": "Média", "Medias": "Médias", "Esthetique": "Esthétique", "Creation": "Création",
+    "Etat": "État", "Aeronautique": "Aéronautique", "Electricite": "Électricité",
+    "Electronique": "Électronique", "Electroniques": "Électroniques",
+    "Electrotechnique": "Électrotechnique", "Medical": "Médical", "Medicale": "Médicale",
+    "Paramedical": "Paramédical", "Paramedicale": "Paramédicale", "Veterinaire": "Vétérinaire",
+    "Etoile": "Étoile", "Reussite": "Réussite", "Eveil": "Éveil", "Emergence": "Émergence",
+    "Evangelique": "Évangélique", "Methodiste": "Méthodiste", "Theologie": "Théologie",
+    "Republique": "République", "Geologie": "Géologie", "Systemes": "Systèmes",
+    "Specialisee": "Spécialisée", "Professionnalise": "Professionnalisé",
+    "Pedagogique": "Pédagogique", "Regionales": "Régionales", "Federal": "Fédéral",
+    "Theodore": "Théodore", "Guede": "Guédé", "Specialites.": "Spécialités",
+}.items()}
+
+
+def _sans_accent_maj(t):
+    return _sans_accent(t).upper()
+
+
+def _mot(tok, premier):
+    """Casse d'un mot isole (sans apostrophe ni trait d'union)."""
+    if not tok:
+        return tok
+    cle = _sans_accent_maj(tok)
+    if cle in _CORRECTIONS:             # faute de la source : on ecrit la forme corrigee
+        cle = tok = _CORRECTIONS[cle]
+    if any(ch.isdigit() for ch in tok) or cle in _SIGLES:
+        return tok.upper()
+    if len(cle) == 1:
+        return tok.upper()
+    if len(cle) <= 4 and cle not in _MOTS_COURTS and cle.lower() not in _MINUSCULES:
+        return tok.upper()                                   # ESTC, ISTP, HEC...
+    if cle.lower() in _MINUSCULES and not premier:
+        return cle.lower()
+    if cle in _ACCENTUES:
+        return _ACCENTUES[cle]
+    return tok[:1].upper() + tok[1:].lower()
+
+
+def _jeton(tok, premier):
+    """Gere apostrophes (D'ABIDJAN, N'GUESSAN, SUP'INTER) et traits d'union."""
+    if "-" in tok:
+        return "-".join(_jeton(p, premier and i == 0) for i, p in enumerate(tok.split("-")))
+    if "'" in tok or "’" in tok:
+        a, b = re.split(r"['’]", tok, maxsplit=1)
+        if a.upper() in ("D", "L"):
+            return ("D" if premier and a.upper() == "D" else a.lower()) + "'" + _mot(b, True)
+        return _mot(a, premier) + "'" + _mot(b, True)
+    return _mot(tok, premier)
+
+
+def casse_francaise(nom):
+    """'INSTITUT SUPERIEUR DE ... (ISTP) YOPOUGON' -> 'Institut Supérieur de ... (ISTP) Yopougon'.
+
+    Ne touche qu'aux noms majoritairement en capitales : un nom deja saisi en casse
+    mixte ('AIST Plateau', 'Groupe CSI') est suppose correct.
+    """
+    lettres = [c for c in nom if c.isalpha()]
+    if not lettres or sum(c.isupper() for c in lettres) < 0.6 * len(lettres):
+        return nom
+    nom = nom.replace("_", " ")          # 'COCODY_GRANDE ECOLE' dans la source
+    # 'D ENSEIGNEMENT' / 'L AGRICULTURE' : apostrophe perdue a la source
+    nom = re.sub(r"\b([DL]) (?=[AEIOUYÉÈÊÂÎÔH])", r"\1'", nom)
+    morceaux = re.split(r"(\s+|[()/,])", nom)
+    sortie, premier = [], True
+    for m in morceaux:
+        if not m or m.isspace() or m in "()/,":
+            sortie.append(m)
+            continue
+        sortie.append(_jeton(m, premier))
+        premier = False
+    return "".join(sortie)
+
+
 def nom_affiche(nom):
     """Nom lisible dans une phrase : sans le rappel entre parentheses, sans le
-    developpement apres le tiret quand le sigle suffit, et correctement accentue."""
+    developpement apres le tiret quand le sigle suffit, en casse francaise et accentue."""
     court = re.sub(r"\s*\([^)]*\)\s*$", "", nom).strip()
     if " - " in court:
         prefixe = court.split(" - ")[0].strip()
         if len(prefixe) <= 28:          # un sigle ou un nom court : le developpement est superflu
             court = prefixe
+    court = casse_francaise(court)
     return re.sub(r"\b[A-Za-z]+\b", lambda m: _ACCENTS.get(m.group(0), m.group(0)), court)
+
+
+# Nom commun en tete de nom propre : il appelle un article. « du Groupe », « de l'Institut ».
+_ARTICLE = {
+    "ecole": "de l'", "ecoles": "des ", "institut": "de l'", "institute": "de l'",
+    "universite": "de l'", "academie": "de l'", "etablissement": "de l'",
+    "groupe": "du ", "lycee": "du ", "college": "du ", "centre": "du ", "cours": "du ",
+    "complexe": "du ", "pole": "du ", "cabinet": "du ", "conservatoire": "du ",
+    "campus": "du ", "chantiers": "des ", "grande": "de la ", "haute": "de la ",
+    "hautes": "des ", "grandes": "des ",
+}
+
+
+def de(nom):
+    """« de l'Institut X », « du Groupe Y », « d'AGITEL », « de PIGIER »."""
+    premier = _sans_accent(re.split(r"[\s\-]", nom, maxsplit=1)[0]).lower().strip(",") if nom else ""
+    if premier in _ARTICLE:
+        return _ARTICLE[premier] + nom
+    return f"d'{nom}" if nom[:1].upper() in "AEIOUYÉÈÊÀÂÎÔÛH" and not nom[:2].upper() in ("HU",) else f"de {nom}"
 
 
 # --- accroches WhatsApp -------------------------------------------------------- #

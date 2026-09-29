@@ -1,9 +1,11 @@
 {
   "nom": "BIG RÉUSSITE",
-  "prenom": "",
-  "fonction": "responsable formation",
-  "telephone": "",
+  "signataire": "SORO Nagony Adama",
+  "fonction": "formateur en intelligence artificielle et directeur de BIG RÉUSSITE ACADÉMIE",
+  "preuve": "Ancien responsable de la Jumia Académie de Côte d'Ivoire, j'ai été retenu par la CIE pour former ses équipes à l'IA.",
+  "telephone": "+225 07 57 22 87 31",
   "email": "soroboss.bossimpact@gmail.com",
   "ville": "Abidjan",
-  "_note": "prenom et fonction ouvrent chaque message WhatsApp. Tant que 'prenom' est vide, les generateurs affichent un avertissement et se replient sur une formule sans nom. Renseigner puis relancer : python3 tools/generer_envois.py && python3 tools/build_whatsapp_page.py"
+  "_source": "Identite, fonction, telephone et references repris du catalogue Catalogue_Modules_Formation_SORO_Nagony_Adama.pdf (Drive, version du 17/09/2026), sections 2 et 2.3. Ne rien ajouter ici qui n'y figure pas.",
+  "_note": "Apres modification : python3 tools/generer_envois.py && python3 tools/build_whatsapp_page.py"
 }

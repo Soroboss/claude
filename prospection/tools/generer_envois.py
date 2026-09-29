@@ -12,7 +12,7 @@ from urllib.parse import quote
 
 RACINE = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RACINE / "tools"))
-from segments import ACCROCHES, TEXTES, civilite, nom_affiche, segment  # noqa: E402
+from segments import ACCROCHES, TEXTES, civilite, de, nom_affiche, segment  # noqa: E402
 
 
 def lire_segment(l):
@@ -49,11 +49,6 @@ def premier_mobile(ligne):
     return ""
 
 
-def de(nom):
-    """Elision : on ecrit d'AGITEL et non de AGITEL devant une voyelle."""
-    return f"d'{nom}" if nom[:1].upper() in "AEIOUÉÈÊÀÂÎÔÛ" else f"de {nom}"
-
-
 def signature():
     parties = [EXP["nom"]]
     if EXP.get("telephone"):
@@ -63,17 +58,23 @@ def signature():
 
 def qui_parle():
     """Un numero inconnu qui attaque sans se presenter se fait bloquer."""
-    prenom, fonction = EXP.get("prenom", "").strip(), EXP.get("fonction", "").strip()
-    maison = f"{EXP['nom']}, organisme de formation à {EXP.get('ville', 'Abidjan')}"
-    if not prenom:
-        return f"je vous écris de la part de {maison}"
-    return f"je suis {prenom}, {fonction} chez {maison}" if fonction else f"je suis {prenom}, de {maison}"
+    qui, fonction = EXP.get("signataire", "").strip(), EXP.get("fonction", "").strip()
+    ville = EXP.get("ville", "Abidjan")
+    if not qui:
+        return f"je vous écris de la part de {EXP['nom']}, organisme de formation à {ville}"
+    return f"je suis {qui}, {fonction}, à {ville}" if fonction else f"je suis {qui}, de {EXP['nom']}"
+
+
+def preuve():
+    """Une reference verifiable : ce qui fait repondre un Directeur des Etudes."""
+    p = EXP.get("preuve", "").strip()
+    return f"{p}\n" if p else ""
 
 
 def alerte_signataire():
-    if not EXP.get("prenom", "").strip():
-        print("  /!\\  expediteur.json : 'prenom' est vide. Les messages partent sans nom de"
-              " personne. Renseigner prenom + fonction, puis relancer.")
+    if not EXP.get("signataire", "").strip():
+        print("  /!\\  expediteur.json : 'signataire' est vide. Les messages partent sans nom de"
+              " personne. Renseigner signataire + fonction, puis relancer.")
 
 
 def message_whatsapp(ecole, seg, cible):
@@ -89,6 +90,7 @@ def message_whatsapp(ecole, seg, cible):
     public = TEXTES[seg]["public"]
     return (
         f"Bonjour, {qui_parle()}.\n"
+        f"{preuve()}"
         f"Je m'adresse au {titre} {de(ecole)}.\n\n"
         f"{ACCROCHES[seg]}\n\n"
         "Aucune règle d'usage ne leur a été donnée, et c'est l'établissement qui "
