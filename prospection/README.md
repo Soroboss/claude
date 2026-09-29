@@ -202,3 +202,49 @@ tient sur un constat qu'il vérifie lui-même dans son propre établissement.
 
 Ordre d'usage : programme d'abord, prix seulement s'il le demande, kit et attestations une fois
 la séance calée.
+
+## Base de donnees : 690 etablissements
+
+La base vient de deux sources :
+
+| Source | Etablissements | Remarque |
+|---|---|---|
+| Recherches web (9 agents) | 104 | 47 adresses testees et confirmees en campagne |
+| Liste officielle MESRS | 586 nouveaux | `bac.mesrs-ci.net/offres/grdes-ecoles` |
+
+Couverture : **535 e-mails**, 611 telephones, 406 numeros joignables sur WhatsApp,
+58 villes. Les adresses sont a **71 % des boites gratuites** (gmail, yahoo...), qui
+echouent 13 % du temps contre 32 % pour les domaines propres : c'est le critere de tri
+des envois.
+
+### Chaine de traitement
+
+```
+mesrs/raw.txt                       donnees brutes MESRS (616 lignes)
+  -> tools/parse_mesrs.py           -> mesrs/mesrs-parse.csv (schema 16 colonnes)
+  -> tools/rapprocher_mesrs.py      rapprochement avec la base (30 correspondances)
+  -> tools/fusion_mesrs.py          -> ecoles-ci-contacts.csv (690 etablissements)
+  -> tools/generer_envois.py        -> envois/emails-a-envoyer.csv (475)
+                                    -> envois/whatsapp-envoi.csv (456)
+  -> tools/build_whatsapp_page.py   -> envois/whatsapp.html (suivi des envois)
+  -> tools/build_sheets.py          -> sheets/*.csv + suivi-appels.csv
+  -> tools/build_workbook.py        -> prospection-ecoles-ia.xlsx (8 onglets)
+  -> tools/generer_prompts.py       -> programme-premium/prompts-par-ecole.csv
+```
+
+Tout se regenere depuis `ecoles-ci-contacts.csv`. `build_sheets.py` **relit et reporte
+la saisie manuelle** (nom du directeur, statut, montants, notes) : regenerer ne detruit
+jamais le travail de prospection deja fait.
+
+### Regles de qualite appliquees
+
+- Une adresse n'est **jamais deduite** d'un nom de domaine. Deux adresses tronquees a la
+  source (`cofecesa@cofecesap`, `...@yahoo`) sont ecartees plutot que completees au hasard.
+- `valide` atteste qu'une boite accepte le courrier, **pas** qu'elle appartient a ce
+  campus : une adresse partagee par deux etablissements est une deduction, la liste
+  officielle la remplace.
+- Une boite partagee par plusieurs campus ne recoit **qu'un seul** e-mail.
+- Comparaisons de `statut` / `fiabilite` insensibles a la casse : un test sensible a la
+  casse renvoyait les 586 nouvelles ecoles en derniere vague.
+- Segment par filiere : un specialiste ne l'emporte qu'avec 2 voix d'ecart, sinon
+  l'ecole est polyvalente et c'est le socle tertiaire qui cadre l'argumentaire.

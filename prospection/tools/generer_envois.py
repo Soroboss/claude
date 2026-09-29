@@ -125,7 +125,11 @@ def corps_email(ligne):
 
 
 def vague(l):
-    prive, abidjan, haute = l[2].startswith("Prive"), "Abidjan" in l[3], l[11] == "Haute"
+    # Comparaisons insensibles a la casse : les sources ecrivent 'Prive' ou 'prive',
+    # et un test sensible a la casse renvoyait tout le MESRS en vague 3.
+    prive = l[2].strip().lower().startswith("prive")
+    abidjan = "abidjan" in l[3].strip().lower()
+    haute = l[11].strip().lower() == "haute"
     if prive and abidjan and haute:
         return 1
     return 2 if prive else 3
