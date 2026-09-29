@@ -59,6 +59,22 @@
     letter-spacing:-.02em; text-wrap:balance;
   }
   .sous{color:var(--doux); font-size:12.5px; margin:0 0 12px}
+  .catalogue{
+    display:flex; align-items:center; gap:12px; margin:0 0 14px;
+    background:var(--carte); border:1px solid var(--trait); border-left:3px solid var(--accent);
+    border-radius:12px; padding:12px 14px; box-shadow:var(--ombre);
+  }
+  .catalogue svg{flex:none; color:var(--accent)}
+  .catalogue div{flex:1; min-width:0}
+  .catalogue b{display:block; font-size:14px; line-height:1.3}
+  .catalogue small{display:block; color:var(--doux); font-size:12px; line-height:1.4; margin-top:2px}
+  .catalogue a{
+    flex:none; background:var(--accent-fond); color:var(--accent); text-decoration:none;
+    font:600 13px/1 "IBM Plex Sans",sans-serif; border-radius:9px; padding:11px 12px;
+    min-height:44px; display:inline-flex; align-items:center;
+  }
+  .catalogue a:hover{background:var(--accent); color:#fff}
+  @media (max-width:420px){ .catalogue{flex-wrap:wrap} .catalogue a{width:100%; justify-content:center} }
 
   .compteurs{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:10px}
   .compteur{display:flex; align-items:baseline; gap:5px}
@@ -150,6 +166,15 @@
   <div class="jauge"><i id="jauge"></i></div>
   <div class="filtres" id="filtres"></div>
 </header>
+
+<section class="catalogue" aria-label="Catalogue de formation">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+  <div>
+    <b>Catalogue de formation — établissements</b>
+    <small>PDF, 19 pages, sans prix. À joindre une fois le Directeur des Études en ligne — jamais avec le premier message, qui ne demande qu'un appel.</small>
+  </div>
+  <a href="catalogue-ecoles.pdf" target="_blank" rel="noopener">Ouvrir le PDF</a>
+</section>
 
 <ul id="liste"></ul>
 <p class="etat" id="etat">Chargement du suivi…</p>

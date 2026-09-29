@@ -248,3 +248,34 @@ jamais le travail de prospection deja fait.
   casse renvoyait les 586 nouvelles ecoles en derniere vague.
 - Segment par filiere : un specialiste ne l'emporte qu'avec 2 voix d'ecart, sinon
   l'ecole est polyvalente et c'est le socle tertiaire qui cadre l'argumentaire.
+
+## Catalogue de formation
+
+Deux fichiers dans `catalogue/` :
+
+| Fichier | Pour qui | Quand l'envoyer |
+|---|---|---|
+| `Catalogue_Formation_IA_Etablissements_SORO_Nagony_Adama.pdf` | **les écoles** (19 pages) | une fois le Directeur des Études en ligne |
+| `Catalogue_Modules_Formation_SORO_Nagony_Adama.pdf` | l'institut de formation (original, 42 pages) | **jamais aux écoles** |
+
+L'original a été écrit pour un institut : il s'ouvre sur « en réponse à la demande de
+l'institut », cite « l'institut » 14 fois, exige un ordinateur par apprenant et des groupes
+de 10 à 15, et ne contient pas la séance de 2h. Envoyé à une école, il contredirait nos
+messages (« aucune salle informatique, sur leurs téléphones »).
+
+La version Écoles part de la séance d'initiation de 2h, présente 16 des 30 modules par filière
+(fiches reprises **mot pour mot** : 241 éléments vérifiés), deux parcours étudiants, et se
+termine sur la classe test. **Aucun prix.** La 2e séance d'initiation n'y figure pas : elle
+reste un levier de négociation (voir `offre-initiation-ia.md`, règle 1).
+
+Le PDF est aussi joint à la page WhatsApp (bouton « Ouvrir le PDF »).
+
+```
+catalogue/source-catalogue.txt      texte du PDF original (Drive, 17/09/2026)
+  -> tools/extraire_catalogue.py    -> catalogue/modules.json (30 fiches structurées)
+  -> tools/build_catalogue_ecoles.py -> catalogue/Catalogue_Formation_IA_Etablissements_...pdf
+```
+
+**L'ordre d'envoi :** 1) message WhatsApp — il ne demande qu'un appel ; 2) l'appel ;
+3) le catalogue, pour que le Directeur des Études le fasse valider en interne ;
+4) la classe test.

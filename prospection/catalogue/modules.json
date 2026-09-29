@@ -1,0 +1,813 @@
+[
+ {
+  "code": "A1",
+  "titre": "Fondamentaux de l'IA générative et art du prompt",
+  "niveau": "Initiation",
+  "public": "Tous publics : salariés, agents administratifs, entrepreneurs, étudiants, demandeurs d'emploi.",
+  "prerequis": "Savoir utiliser un ordinateur ou un smartphone et naviguer sur Internet. Aucune connaissance technique requise.",
+  "objectifs": [
+   "Distinguer les grandes familles d'IA génératives (texte, image, vidéo, son) et leurs usages professionnels",
+   "Choisir l'outil adapté à un besoin donné plutôt que d'utiliser un seul outil pour tout",
+   "Rédiger un prompt structuré (rôle, contexte, tâche, contraintes, format de sortie)",
+   "Évaluer la fiabilité d'une réponse et corriger une hallucination",
+   "Appliquer les règles de confidentialité et de déontologie dans l'usage des IA"
+  ],
+  "programme": [
+   "Séquence 1 — Ce qu'est réellement une IA générative, ce qu'elle sait faire et ne sait pas faire (2 h)",
+   "Séquence 2 — Panorama des outils accessibles depuis la Côte d'Ivoire : versions gratuites, payantes, moyens de paiement (1 h)",
+   "Séquence 3 — La structure d'un prompt professionnel : méthode R.C.T.C.F. et exercices guidés (2 h)",
+   "Séquence 4 — Itérer, corriger, faire critiquer sa propre production par l'IA (1 h)",
+   "Séquence 5 — Risques : hallucinations, données confidentielles, droits d'usage des contenus produits (1 h)",
+   "À distance — Constitution d'une première bibliothèque personnelle de 10 prompts métier (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Quiz de connaissances (20 questions) + remise de la bibliothèque de 10 prompts métier annotés.",
+  "livrables": "Support de cours PDF, fiche mémo « anatomie d'un prompt », bibliothèque de prompts de démarrage."
+ },
+ {
+  "code": "A2",
+  "titre": "L'IA au bureau : productivité administrative et rédaction professionnelle",
+  "niveau": "Initiation à intermédiaire",
+  "public": "Agents administratifs, fonctionnaires, secrétaires, assistants de direction, cadres, gestionnaires.",
+  "prerequis": "Module A1 ou maîtrise de base du prompt. Pratique courante du traitement de texte.",
+  "objectifs": [
+   "Rédiger courriers administratifs, notes de service, comptes rendus et rapports assistés par IA",
+   "Synthétiser un document long ou une réunion en une note d'une page",
+   "Construire des modèles réutilisables pour les écrits récurrents du service",
+   "Traduire et reformuler des documents professionnels (français / anglais)",
+   "Réduire de façon mesurable le temps consacré aux tâches rédactionnelles répétitives"
+  ],
+  "programme": [
+   "Séquence 1 — Cartographie des tâches administratives automatisables dans son propre poste (2 h)",
+   "Séquence 2 — Correspondance administrative assistée : courrier, note, lettre de relance, procès-verbal (3 h)",
+   "Séquence 3 — Comptes rendus de réunion : de l'enregistrement audio à la note validée (2 h)",
+   "Séquence 4 — Synthèse et analyse de documents longs : rapports, textes réglementaires, appels d'offres (3 h)",
+   "Séquence 5 — Construire ses modèles de service et les partager avec ses collègues (2 h)",
+   "Séquence 6 — Présentations et supports de réunion générés en quelques minutes (2 h)",
+   "À distance — Application sur les documents réels du poste de travail, avec retour du formateur (7 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 7,
+  "total_h": 21,
+  "evaluation": "Étude de cas : traitement complet d'un dossier administratif réel (courrier + synthèse + présentation), évalué sur grille.",
+  "livrables": "Kit de 25 modèles de documents administratifs, guide de poche, enregistrement des démonstrations."
+ },
+ {
+  "code": "A3",
+  "titre": "Créer son contenu marketing avec l'IA en quelques minutes — spécial PME",
+  "niveau": "Intermédiaire",
+  "public": "Dirigeants de TPE/PME, commerçants, responsables communication, community managers, entrepreneurs.",
+  "prerequis": "Module A1 ou usage courant d'un outil d'IA conversationnelle.",
+  "objectifs": [
+   "Définir une ligne éditoriale et une cible avant de produire du contenu",
+   "Produire textes de publication, accroches et légendes adaptés au marché local",
+   "Décliner une même idée en plusieurs formats (post, carrousel, script vidéo, message WhatsApp)",
+   "Bâtir un calendrier éditorial d'un mois en une seule séance de travail"
+  ],
+  "programme": [
+   "Séquence 1 — Positionnement, promesse et persona client en contexte ivoirien (1 h 30)",
+   "Séquence 2 — Les accroches qui arrêtent le défilement : structures et banque d'exemples (1 h 30)",
+   "Séquence 3 — Production assistée : 30 publications en une séance (2 h)",
+   "Séquence 4 — Déclinaison multi-format et adaptation au ton de la marque (1 h)",
+   "Séquence 5 — Calendrier éditorial et rythme de publication tenable (1 h)",
+   "À distance — Production et planification d'un mois de contenu pour sa propre activité (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Remise d'un calendrier éditorial d'un mois accompagné de 20 contenus finalisés.",
+  "livrables": "Matrice de ligne éditoriale, banque de 50 accroches, modèle de calendrier éditorial."
+ },
+ {
+  "code": "A4",
+  "titre": "Industrialiser l'IA dans son service : bibliothèques de prompts et procédures",
+  "niveau": "Intermédiaire",
+  "public": "Responsables de service, chefs d'équipe, référents numériques, formateurs internes.",
+  "prerequis": "Modules A1 et A2, ou pratique régulière de l'IA en contexte professionnel.",
+  "objectifs": [
+   "Identifier les processus du service où l'IA produit un gain mesurable",
+   "Formaliser des prompts en procédures reproductibles par n'importe quel agent",
+   "Rédiger une charte d'usage de l'IA (confidentialité, validation humaine, traçabilité)",
+   "Former et accompagner ses propres collaborateurs à l'adoption"
+  ],
+  "programme": [
+   "Séquence 1 — Diagnostic : cartographier les processus et chiffrer le temps consommé (2 h)",
+   "Séquence 2 — Du prompt improvisé à la procédure documentée (2 h)",
+   "Séquence 3 — Construction de la bibliothèque de prompts du service (2 h)",
+   "Séquence 4 — Charte d'usage, contrôle qualité et validation humaine (1 h)",
+   "À distance — Déploiement pilote sur un processus réel et mesure du gain (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Présentation d'un plan de déploiement chiffré sur un processus du service.",
+  "livrables": "Trame de charte d'usage, modèle de fiche-procédure, tableau de mesure des gains."
+ },
+ {
+  "code": "B1",
+  "titre": "Créer des affiches et visuels publicitaires professionnels avec l'IA",
+  "niveau": "Intermédiaire",
+  "public": "Communicants, entrepreneurs, commerçants, graphistes débutants, agents chargés de la communication.",
+  "prerequis": "Module A1 recommandé. Aucune compétence en design requise.",
+  "objectifs": [
+   "Concevoir une affiche lisible et hiérarchisée (message principal, preuve, appel à l'action)",
+   "Générer et diriger une image IA conforme à une intention créative",
+   "Intégrer texte, logo et coordonnées sans dégrader la qualité du visuel",
+   "Décliner un visuel en plusieurs formats (affiche A3, story, post carré, bannière)",
+   "Produire un visuel client complet en moins de 30 minutes"
+  ],
+  "programme": [
+   "Séquence 1 — Les règles de lecture d'une affiche qui vend : hiérarchie, contraste, espace (2 h)",
+   "Séquence 2 — Prompts d'image : cadrage, style, lumière, contexte africain et représentation locale (3 h)",
+   "Séquence 3 — Habillage et mise en page : logos, typographies, gabarits réutilisables (3 h)",
+   "Séquence 4 — Déclinaison multiformat et export aux bonnes définitions (2 h)",
+   "Séquence 5 — Atelier commande réelle : brief client, production, présentation (4 h)",
+   "À distance — Réalisation de trois affiches pour trois secteurs différents (6 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 6,
+  "total_h": 20,
+  "evaluation": "Portfolio de 3 affiches déclinées chacune en 3 formats, évalué sur grille (lisibilité, qualité, respect du brief).",
+  "livrables": "Bibliothèque de gabarits, banque de prompts visuels par secteur, check-list de contrôle avant livraison."
+ },
+ {
+  "code": "B2",
+  "titre": "Retouche, restauration et détourage photo par IA",
+  "niveau": "Intermédiaire",
+  "public": "Photographes, imprimeurs, studios photo, communicants, commerçants, prestataires de services.",
+  "prerequis": "Aucun prérequis technique. Disposer de photos à traiter.",
+  "objectifs": [
+   "Restaurer une photo ancienne, abîmée ou de faible définition",
+   "Détourer, remplacer un arrière-plan et harmoniser la lumière",
+   "Corriger colorimétrie, netteté et défauts sans effet artificiel",
+   "Monter en définition pour l'impression grand format"
+  ],
+  "programme": [
+   "Séquence 1 — Diagnostic d'une image : ce qui est récupérable et ce qui ne l'est pas (1 h)",
+   "Séquence 2 — Restauration de photos anciennes et colorisation (2 h)",
+   "Séquence 3 — Détourage, remplacement d'arrière-plan, suppression d'éléments (2 h)",
+   "Séquence 4 — Montée en définition et préparation fichier pour l'impression (1 h)",
+   "Séquence 5 — Atelier : traitement d'un lot de 10 photos apportées par les apprenants (1 h)",
+   "À distance — Traitement d'un lot personnel et remise avant/après (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Dossier avant/après de 10 photos traitées, avec justification des choix.",
+  "livrables": "Bibliothèque de prompts de retouche, fiche des formats et définitions d'impression."
+ },
+ {
+  "code": "B3",
+  "titre": "Portraits et photos corporate générés par IA",
+  "niveau": "Intermédiaire",
+  "public": "Professionnels en recherche d'image de marque, cabinets, écoles, entreprises, studios photo, freelances.",
+  "prerequis": "Module B2 recommandé.",
+  "objectifs": [
+   "Transformer une photo ordinaire en portrait professionnel exploitable",
+   "Respecter la ressemblance et éviter l'effet « visage artificiel »",
+   "Produire une série homogène pour toute une équipe",
+   "Encadrer l'usage : consentement, droit à l'image, mentions"
+  ],
+  "programme": [
+   "Séquence 1 — Codes du portrait corporate : tenue, fond, cadrage, regard (1 h 30)",
+   "Séquence 2 — Prompts de transformation et préservation de la ressemblance (2 h)",
+   "Séquence 3 — Homogénéiser une série pour un trombinoscope d'entreprise (2 h)",
+   "Séquence 4 — Cadre juridique et éthique : consentement et information (1 h)",
+   "Séquence 5 — Atelier de production sur photos réelles (30 min)",
+   "À distance — Réalisation d'une série de 8 portraits homogènes (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Série de 8 portraits homogènes + formulaire de consentement rédigé.",
+  "livrables": "Guide de prise de vue préalable, modèle de formulaire de consentement, prompts de série."
+ },
+ {
+  "code": "B4",
+  "titre": "Visuels produits e-commerce 8K, mannequins IA et fiches produit optimisées",
+  "niveau": "Avancé",
+  "public": "E-commerçants, boutiques en ligne, importateurs, revendeurs, responsables catalogue.",
+  "prerequis": "Modules B1 et B2, ou pratique confirmée de la génération d'images.",
+  "objectifs": [
+   "Transformer une photo produit amateur en visuel catalogue haute définition",
+   "Mettre en scène un produit porté ou utilisé par un mannequin généré",
+   "Produire des visuels cohérents à l'échelle d'un catalogue entier",
+   "Rédiger des fiches produit optimisées pour le référencement et la conversion"
+  ],
+  "programme": [
+   "Séquence 1 — Ce qui fait vendre un visuel produit : preuve, échelle, contexte d'usage (2 h)",
+   "Séquence 2 — De la photo au fond studio : nettoyage, ombres, reflets (3 h)",
+   "Séquence 3 — Mannequins générés : morphologies, peaux, tenues, cohérence de série (3 h)",
+   "Séquence 4 — Mises en scène contextuelles et visuels de campagne (2 h)",
+   "Séquence 5 — Fiches produit : titre, arguments, mots-clés, structure de page (2 h)",
+   "Séquence 6 — Chaîne de production pour un catalogue de 50 références (2 h)",
+   "À distance — Production complète de 10 fiches produit illustrées (6 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 6,
+  "total_h": 20,
+  "evaluation": "Dossier de 10 fiches produit complètes (visuels + textes) prêtes à publier.",
+  "livrables": "Chaîne de production documentée, banque de prompts mannequins et décors, modèle de fiche produit."
+ },
+ {
+  "code": "C1",
+  "titre": "Créer des vidéos professionnelles avec l'IA : la méthode en trois étapes",
+  "niveau": "Intermédiaire",
+  "public": "Communicants, entrepreneurs, créateurs de contenu, agences, formateurs, chargés de communication.",
+  "prerequis": "Module A1. Disposer d'un smartphone récent ou d'un ordinateur.",
+  "objectifs": [
+   "Écrire un script vidéo court structuré pour retenir l'attention",
+   "Générer des plans vidéo par IA cohérents entre eux (personnages, décor, lumière)",
+   "Assembler, sous-titrer et sonoriser une vidéo publiable",
+   "Produire une vidéo publicitaire de 30 à 60 secondes en une demi-journée"
+  ],
+  "programme": [
+   "Séquence 1 — Étape 1 : le script — accroche, tension, promesse, appel à l'action (3 h)",
+   "Séquence 2 — Étape 2 : la génération — prompts vidéo, plans, continuité entre séquences (5 h)",
+   "Séquence 3 — Étape 3 : le montage — rythme, sous-titres, voix off, musique (4 h)",
+   "Séquence 4 — Formats et exports selon les plateformes de diffusion (1 h)",
+   "Séquence 5 — Atelier : production d'une publicité complète du brief à l'export (1 h)",
+   "À distance — Réalisation de deux vidéos personnelles avec retour individualisé (7 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 7,
+  "total_h": 21,
+  "evaluation": "Livraison de 2 vidéos finalisées (une institutionnelle, une publicitaire) évaluées sur grille.",
+  "livrables": "Trames de scripts, banque de prompts vidéo, gabarits de montage et de sous-titrage."
+ },
+ {
+  "code": "C2",
+  "titre": "Montage et post-production : maîtriser CapCut sur mobile et sur ordinateur",
+  "niveau": "Initiation",
+  "public": "Créateurs de contenu, community managers, commerçants, étudiants, associations.",
+  "prerequis": "Aucun.",
+  "objectifs": [
+   "Maîtriser l'interface, les pistes, les coupes et les transitions",
+   "Sous-titrer automatiquement et corriger les erreurs de transcription",
+   "Étalonner, stabiliser et normaliser le son d'une vidéo",
+   "Créer des gabarits de montage réutilisables pour publier vite et régulièrement"
+  ],
+  "programme": [
+   "Séquence 1 — Prise en main, organisation des rushes et méthode de travail (1 h 30)",
+   "Séquence 2 — Coupe, rythme et respiration du montage (2 h)",
+   "Séquence 3 — Sous-titres, textes animés et habillage graphique (2 h)",
+   "Séquence 4 — Son : musique, voix off, nettoyage, niveaux (1 h)",
+   "Séquence 5 — Gabarits, exports et archivage des projets (30 min)",
+   "À distance — Montage de trois formats courts à partir des mêmes rushes (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Trois montages courts issus d'un même lot de rushes, évalués sur le rythme et la lisibilité.",
+  "livrables": "Gabarits de montage, banque de musiques et transitions, check-list d'export."
+ },
+ {
+  "code": "C3",
+  "titre": "Animer dessins, illustrations et photos en vidéos IA",
+  "niveau": "Intermédiaire",
+  "public": "Illustrateurs, enseignants, agences, associations, créateurs de contenu pédagogique.",
+  "prerequis": "Module C1 ou C2 recommandé.",
+  "objectifs": [
+   "Transformer un dessin ou une photo fixe en séquence animée",
+   "Contrôler le mouvement, la caméra et la durée d'un plan animé",
+   "Construire un récit visuel à partir d'images fixes",
+   "Produire un contenu pédagogique ou promotionnel animé"
+  ],
+  "programme": [
+   "Séquence 1 — Préparer une image pour l'animation : format, contraste, zones de mouvement (1 h 30)",
+   "Séquence 2 — Prompts de mouvement : caméra, personnages, éléments naturels (2 h)",
+   "Séquence 3 — Enchaîner les plans et raconter une histoire en 45 secondes (2 h)",
+   "Séquence 4 — Habillage sonore et export (1 h)",
+   "Séquence 5 — Atelier de production libre (30 min)",
+   "À distance — Réalisation d'un récit animé de 45 secondes (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Livraison d'une séquence animée narrative de 45 secondes minimum.",
+  "livrables": "Banque de prompts de mouvement, gabarit de storyboard."
+ },
+ {
+  "code": "C4",
+  "titre": "Créer musiques, jingles et habillages sonores avec l'IA",
+  "niveau": "Initiation",
+  "public": "Créateurs de contenu, radios, églises et associations, publicitaires, artistes, écoles.",
+  "prerequis": "Aucun. Aucune compétence musicale exigée.",
+  "objectifs": [
+   "Générer une musique originale à partir d'une intention et d'un style",
+   "Écrire ou faire écrire des paroles et les faire interpréter",
+   "Produire un jingle publicitaire de 15 à 30 secondes",
+   "Comprendre les conditions d'utilisation et de diffusion des morceaux produits"
+  ],
+  "programme": [
+   "Séquence 1 — Panorama des outils de génération musicale et de leurs limites (1 h)",
+   "Séquence 2 — Décrire un morceau : style, tempo, instruments, ambiance, langue (2 h)",
+   "Séquence 3 — Paroles, structure couplet/refrain et interprétation (2 h)",
+   "Séquence 4 — Jingles et identités sonores de marque (1 h 30)",
+   "Séquence 5 — Export, distribution et droits d'utilisation (30 min)",
+   "À distance — Production d'un morceau complet et d'un jingle de marque (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Remise d'un morceau complet et d'un jingle de 20 secondes.",
+  "livrables": "Fiches de description musicale, banque de styles, guide de distribution."
+ },
+ {
+  "code": "D1",
+  "titre": "Fondamentaux du marketing digital et stratégie de contenu",
+  "niveau": "Initiation",
+  "public": "Entrepreneurs, étudiants, demandeurs d'emploi, community managers débutants, responsables commerciaux.",
+  "prerequis": "Aucun.",
+  "objectifs": [
+   "Construire un positionnement, une promesse et une cible claire",
+   "Choisir ses plateformes en fonction de son marché plutôt que de la mode",
+   "Bâtir une stratégie de contenu et un calendrier éditorial trimestriel",
+   "Mesurer la performance d'un compte avec des indicateurs simples et utiles"
+  ],
+  "programme": [
+   "Séquence 1 — Le marché digital ivoirien et ouest-africain : usages réels, plateformes, terminaux (2 h)",
+   "Séquence 2 — Positionnement, promesse, persona et proposition de valeur (3 h)",
+   "Séquence 3 — Formats et codes par plateforme : Facebook, Instagram, TikTok, WhatsApp, LinkedIn (3 h)",
+   "Séquence 4 — Ligne éditoriale, piliers de contenu, calendrier trimestriel (3 h)",
+   "Séquence 5 — Indicateurs : portée, engagement, clics, conversions — lesquels comptent vraiment (2 h)",
+   "Séquence 6 — Atelier : plan de communication complet d'une entreprise réelle (1 h)",
+   "À distance — Rédaction du plan de communication personnel (6 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 6,
+  "total_h": 20,
+  "evaluation": "Remise et soutenance d'un plan de communication digitale complet.",
+  "livrables": "Modèle de plan de communication, matrice de contenus, tableau de suivi d'indicateurs."
+ },
+ {
+  "code": "D2",
+  "titre": "Facebook et Instagram Ads : créer, lancer et suivre sa première campagne",
+  "niveau": "Intermédiaire",
+  "public": "Entrepreneurs, e-commerçants, responsables marketing, freelances, demandeurs d'emploi visant le métier de média buyer.",
+  "prerequis": "Module D1 ou pratique des réseaux sociaux professionnels. Disposer d'une page Facebook active.",
+  "objectifs": [
+   "Configurer correctement un Business Manager, une page et un compte publicitaire",
+   "Choisir l'objectif de campagne aligné sur l'objectif commercial réel",
+   "Construire audiences, créatifs et budgets d'une première campagne",
+   "Lire un tableau de résultats et décider : couper, laisser tourner, augmenter"
+  ],
+  "programme": [
+   "Séquence 1 — Architecture du système publicitaire Meta : compte, campagne, ensemble, publicité (2 h)",
+   "Séquence 2 — Paramétrage propre du Business Manager, rôles, moyens de paiement locaux (2 h)",
+   "Séquence 3 — Objectifs de campagne et pièges classiques du débutant (2 h)",
+   "Séquence 4 — Audiences : larges, détaillées, personnalisées, similaires (3 h)",
+   "Séquence 5 — Créatifs publicitaires : image, vidéo, texte, accroche, appel à l'action (3 h)",
+   "Séquence 6 — Lancement encadré d'une campagne réelle et lecture des premiers résultats (2 h)",
+   "À distance — Suivi de la campagne lancée pendant 7 jours avec débriefs (7 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 7,
+  "total_h": 21,
+  "evaluation": "Campagne réellement lancée + rapport d'analyse à 7 jours avec décisions justifiées.",
+  "livrables": "Check-list de paramétrage, gabarits de créatifs, modèle de rapport de campagne."
+ },
+ {
+  "code": "D3",
+  "titre": "Meta Ads avancé : structures modernes, réduction du coût par résultat et passage à l'échelle",
+  "niveau": "Avancé",
+  "public": "Média buyers, agences, responsables acquisition, e-commerçants confirmés, freelances marketing.",
+  "prerequis": "Module D2 ou expérience effective de gestion de campagnes payantes.",
+  "objectifs": [
+   "Choisir la structure de compte adaptée au budget et au volume de conversions",
+   "Exploiter les campagnes automatisées de type Advantage+ sans perdre le contrôle",
+   "Diagnostiquer un coût par résultat élevé et agir sur la bonne cause",
+   "Passer à l'échelle sans casser la performance (scaling vertical et horizontal)",
+   "Organiser un dispositif de test créatif continu"
+  ],
+  "programme": [
+   "Séquence 1 — Ce qui a changé dans le système d'enchères et d'apprentissage (2 h)",
+   "Séquence 2 — Structures de compte : consolidation, budgets au niveau campagne, phase d'apprentissage (3 h)",
+   "Séquence 3 — Campagnes automatisées et signaux à fournir à l'algorithme (3 h)",
+   "Séquence 4 — Diagnostic de performance : arbre de décision coût / audience / créatif / offre (4 h)",
+   "Séquence 5 — Industrialiser le test créatif : cadence, nomenclature, lecture des résultats (3 h)",
+   "Séquence 6 — Scaling : règles d'augmentation de budget, duplication, saturation d'audience (3 h)",
+   "Séquence 7 — Reciblage et exclusion : construire un dispositif complet (2 h)",
+   "Séquence 8 — Atelier d'audit : diagnostic d'un compte réel présenté en séance (1 h)",
+   "À distance — Audit écrit d'un compte publicitaire et plan d'optimisation (7 h)"
+  ],
+  "presentiel_h": 21,
+  "distance_h": 7,
+  "total_h": 28,
+  "evaluation": "Audit complet d'un compte publicitaire avec plan d'optimisation chiffré, soutenu devant le groupe.",
+  "livrables": "Grille d'audit de compte, arbre de décision d'optimisation, nomenclature de campagnes, tableau de test créatif."
+ },
+ {
+  "code": "D4",
+  "titre": "Pixel, API de conversions et fiabilité de la mesure",
+  "niveau": "Avancé",
+  "public": "Média buyers, développeurs web, responsables e-commerce, agences.",
+  "prerequis": "Module D2. Disposer d'un site web ou d'une boutique en ligne.",
+  "objectifs": [
+   "Installer et vérifier un pixel de suivi sur un site ou une boutique",
+   "Mettre en place le suivi côté serveur pour fiabiliser les conversions",
+   "Définir et tester les événements utiles à son activité",
+   "Diagnostiquer un écart entre les ventes réelles et les conversions déclarées"
+  ],
+  "programme": [
+   "Séquence 1 — Comment fonctionne réellement le suivi publicitaire aujourd'hui (1 h 30)",
+   "Séquence 2 — Installation du pixel et des événements standards (2 h)",
+   "Séquence 3 — Suivi côté serveur : principes, mise en place, déduplication (2 h)",
+   "Séquence 4 — Vérification, tests et correction des erreurs fréquentes (1 h)",
+   "Séquence 5 — Écarts de mesure : identifier la cause, arbitrer les décisions (30 min)",
+   "À distance — Mise en place complète du suivi sur son propre site (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Rapport de conformité du suivi : événements installés, testés et validés sur un site réel.",
+  "livrables": "Check-list d'installation, tableau de correspondance des événements, procédure de test."
+ },
+ {
+  "code": "D5",
+  "titre": "Analyse des données publicitaires et pilotage par la donnée",
+  "niveau": "Avancé",
+  "public": "Média buyers, agences, responsables marketing, analystes, consultants.",
+  "prerequis": "Module D2. Manipulation de base d'un tableur.",
+  "objectifs": [
+   "Exporter et nettoyer des données de campagnes",
+   "Construire un tableau de bord de suivi lisible par un dirigeant",
+   "Calculer les indicateurs de rentabilité réels (coût d'acquisition, retour sur dépense publicitaire, marge)",
+   "Transformer une analyse en décisions d'arbitrage budgétaire"
+  ],
+  "programme": [
+   "Séquence 1 — Quelles données exporter et à quelle fréquence (1 h)",
+   "Séquence 2 — Nettoyage et structuration d'un export publicitaire (2 h)",
+   "Séquence 3 — Indicateurs de rentabilité et seuils de décision (2 h)",
+   "Séquence 4 — Construction d'un tableau de bord de pilotage (1 h 30)",
+   "Séquence 5 — Du tableau de bord à la décision : cas pratiques (30 min)",
+   "À distance — Construction du tableau de bord sur ses propres données (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Tableau de bord fonctionnel + note d'analyse avec trois décisions argumentées.",
+  "livrables": "Modèle de tableau de bord, fiches de calcul des indicateurs, trame de rapport client."
+ },
+ {
+  "code": "E1",
+  "titre": "Créer et administrer une boutique en ligne (WordPress / WooCommerce)",
+  "niveau": "Intermédiaire",
+  "public": "Entrepreneurs, commerçants, demandeurs d'emploi en reconversion, étudiants en informatique et gestion.",
+  "prerequis": "Aisance informatique générale. Aucune compétence en programmation.",
+  "objectifs": [
+   "Installer et configurer une boutique en ligne complète",
+   "Créer catalogue, catégories, variations et fiches produit",
+   "Paramétrer livraison, zones, frais et modes de paiement locaux",
+   "Gérer les commandes de bout en bout et administrer la boutique au quotidien",
+   "Sécuriser, sauvegarder et maintenir le site"
+  ],
+  "programme": [
+   "Séquence 1 — Hébergement, nom de domaine, installation et réglages de base (3 h)",
+   "Séquence 2 — Thème, structure du site et pages obligatoires (3 h)",
+   "Séquence 3 — Catalogue : produits simples, variables, stocks, images (4 h)",
+   "Séquence 4 — Livraison, zones de livraison et frais en contexte ivoirien (2 h)",
+   "Séquence 5 — Paiements : mobile money, carte, paiement à la livraison (3 h)",
+   "Séquence 6 — Commande, facturation, statuts, notifications client (3 h)",
+   "Séquence 7 — Sécurité, sauvegardes, mises à jour et maintenance (2 h)",
+   "Séquence 8 — Atelier : mise en ligne de la boutique de chaque apprenant (1 h)",
+   "À distance — Finalisation et mise en production de la boutique (7 h)"
+  ],
+  "presentiel_h": 21,
+  "distance_h": 7,
+  "total_h": 28,
+  "evaluation": "Boutique en ligne fonctionnelle mise en production avec au moins 10 produits et un tunnel de commande testé.",
+  "livrables": "Guide d'administration, check-list de mise en ligne, procédure de sauvegarde."
+ },
+ {
+  "code": "E2",
+  "titre": "Vendre par WhatsApp Business : tunnel, relance et closing",
+  "niveau": "Initiation",
+  "public": "Commerçants, entrepreneurs, télévendeurs, agents commerciaux, artisans, prestataires.",
+  "prerequis": "Disposer d'un smartphone et d'un numéro dédié à l'activité.",
+  "objectifs": [
+   "Configurer un compte professionnel : catalogue, réponses rapides, étiquettes",
+   "Construire un parcours de vente du premier message à l'encaissement",
+   "Traiter les objections courantes (prix, confiance, délai, livraison)",
+   "Organiser la relance sans harceler le client"
+  ],
+  "programme": [
+   "Séquence 1 — Paramétrage professionnel complet du compte (1 h 30)",
+   "Séquence 2 — Le parcours de vente : accueil, qualification, proposition, conclusion (2 h)",
+   "Séquence 3 — Traitement des objections et scripts de réponse (2 h)",
+   "Séquence 4 — Relances : rythme, prétextes légitimes, moment d'arrêt (1 h)",
+   "Séquence 5 — Organisation : étiquettes, suivi des prospects, tableau de bord simple (30 min)",
+   "À distance — Application sur son propre flux de prospects, avec débrief (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Mise en situation de vente enregistrée + remise du parcours de vente écrit.",
+  "livrables": "Bibliothèque de messages types, scripts d'objection, modèle de suivi de prospects."
+ },
+ {
+  "code": "E3",
+  "titre": "Service après-vente et relation client e-commerce",
+  "niveau": "Initiation",
+  "public": "Agents de service client, télévendeurs, gestionnaires de boutique, entrepreneurs.",
+  "prerequis": "Aucun.",
+  "objectifs": [
+   "Répondre avec méthode aux situations difficiles les plus fréquentes",
+   "Gérer retards, produits non conformes, remboursements et litiges",
+   "Transformer une réclamation en rachat ou en recommandation",
+   "Structurer un service après-vente reproductible par toute l'équipe"
+  ],
+  "programme": [
+   "Séquence 1 — Le coût réel d'un mauvais service après-vente (1 h)",
+   "Séquence 2 — Les 30 situations types et leurs réponses (3 h)",
+   "Séquence 3 — Litiges, remboursements et clients de mauvaise foi (1 h 30)",
+   "Séquence 4 — De la réclamation à la fidélisation (1 h)",
+   "Séquence 5 — Procédures, délais de réponse et suivi qualité (30 min)",
+   "À distance — Constitution de la bibliothèque de réponses de l'entreprise (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Traitement écrit de 10 cas tirés au sort, évalué sur grille de qualité de réponse.",
+  "livrables": "Recueil de 30 cas et réponses prêtes à l'emploi, procédure de service après-vente."
+ },
+ {
+  "code": "E4",
+  "titre": "Prospection commerciale digitale et techniques de closing",
+  "niveau": "Intermédiaire",
+  "public": "Commerciaux, freelances, entrepreneurs, demandeurs d'emploi en reconversion commerciale, agents de développement.",
+  "prerequis": "Aucun prérequis technique.",
+  "objectifs": [
+   "Constituer un fichier de prospection qualifié et priorisé",
+   "Écrire des messages de premier contact qui obtiennent une réponse",
+   "Conduire un appel de prospection structuré",
+   "Conclure : traiter le prix, créer l'urgence légitime, obtenir l'engagement",
+   "Piloter son activité commerciale avec des indicateurs simples"
+  ],
+  "programme": [
+   "Séquence 1 — Ciblage : définir son client idéal et son marché adressable (2 h)",
+   "Séquence 2 — Constituer et enrichir un fichier de prospection (annuaires, terrain, sources publiques) (3 h)",
+   "Séquence 3 — Messages de premier contact : WhatsApp, e-mail, message direct (3 h)",
+   "Séquence 4 — Script d'appel : ouverture, découverte, argumentation, objections (3 h)",
+   "Séquence 5 — Le closing : signaux d'achat, prix, engagement, suite à donner (2 h)",
+   "Séquence 6 — Suivi commercial et indicateurs de pilotage (1 h)",
+   "À distance — Campagne de prospection réelle sur 30 contacts, avec débrief (6 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 6,
+  "total_h": 20,
+  "evaluation": "Fichier de 50 prospects qualifiés + kit de prospection écrit + mise en situation d'appel évaluée.",
+  "livrables": "Modèle de fichier de prospection, kit de messages, script d'appel, tableau de suivi commercial."
+ },
+ {
+  "code": "E5",
+  "titre": "Gestion de stock et pilotage d'activité commerciale sur tableur",
+  "niveau": "Intermédiaire",
+  "public": "Gestionnaires de boutique, magasiniers, responsables logistique, entrepreneurs, comptables.",
+  "prerequis": "Bases du tableur (saisie, formules simples).",
+  "objectifs": [
+   "Structurer un fichier de stock fiable (entrées, sorties, seuils d'alerte)",
+   "Calculer valeur de stock, rotation et produits dormants",
+   "Consolider plusieurs points de vente ou plusieurs périodes",
+   "Produire un tableau de bord mensuel exploitable par la direction"
+  ],
+  "programme": [
+   "Séquence 1 — Structure d'un fichier de stock qui ne se casse pas (2 h)",
+   "Séquence 2 — Mouvements, seuils d'alerte et réapprovisionnement (2 h)",
+   "Séquence 3 — Indicateurs : valeur, rotation, marge, invendus (1 h 30)",
+   "Séquence 4 — Consolidation multi-périodes et multi-points de vente (1 h)",
+   "Séquence 5 — Tableau de bord de direction (30 min)",
+   "À distance — Mise en place du fichier sur les données réelles de l'entreprise (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Fichier de gestion de stock opérationnel avec tableau de bord automatisé.",
+  "livrables": "Modèle de fichier de stock, modèle de tableau de bord, procédure d'inventaire."
+ },
+ {
+  "code": "F1",
+  "titre": "Créer, produire et vendre un produit digital (e-book, formation en ligne)",
+  "niveau": "Intermédiaire",
+  "public": "Formateurs, experts métier, enseignants, entrepreneurs, étudiants, demandeurs d'emploi.",
+  "prerequis": "Module A1 recommandé. Disposer d'un savoir-faire à transmettre.",
+  "objectifs": [
+   "Choisir un sujet qui a un marché et une capacité à payer",
+   "Structurer et produire un e-book ou une formation complète",
+   "Mettre en forme un produit professionnel (couverture, mise en page, illustrations)",
+   "Fixer un prix, publier et encaisser en ligne",
+   "Lancer le produit et réaliser ses premières ventes"
+  ],
+  "programme": [
+   "Séquence 1 — Validation du sujet : douleur, demande, concurrence, prix acceptable (2 h)",
+   "Séquence 2 — Plan détaillé et production du contenu assistée par IA (4 h)",
+   "Séquence 3 — Mise en forme professionnelle : couverture, maquette, illustrations (3 h)",
+   "Séquence 4 — Publication sur une plateforme de vente et encaissement mobile money (2 h)",
+   "Séquence 5 — Page de vente : promesse, preuve, offre, appel à l'action (2 h)",
+   "Séquence 6 — Plan de lancement sur 7 jours (1 h)",
+   "À distance — Production et mise en ligne du produit de chaque apprenant (7 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 7,
+  "total_h": 21,
+  "evaluation": "Produit digital effectivement publié et accessible à la vente, avec page de vente en ligne.",
+  "livrables": "Trame de plan de produit, gabarits de mise en page, modèle de page de vente, plan de lancement."
+ },
+ {
+  "code": "F2",
+  "titre": "BUSINESS SOLO IA : absorber un métier grâce à l'intelligence artificielle",
+  "niveau": "Avancé",
+  "public": "Entrepreneurs individuels, freelances, demandeurs d'emploi en reconversion, porteurs de projet.",
+  "prerequis": "Modules A1 et A3. Une activité existante ou un projet défini.",
+  "objectifs": [
+   "Choisir un métier à « absorber » (graphiste, monteur, rédacteur, community manager) en fonction du marché local",
+   "Monter une chaîne de production IA capable de tenir des délais clients",
+   "Fixer une grille tarifaire cohérente avec le marché ivoirien",
+   "Trouver ses premiers clients et livrer un premier dossier complet",
+   "Structurer son activité solo : outils, planning, capacité, facturation"
+  ],
+  "programme": [
+   "Séquence 1 — Le principe d'absorption : ce que l'IA remplace, ce qu'elle ne remplace pas (2 h)",
+   "Séquence 2 — Choisir son métier cible : demande locale, budget des clients, concurrence (3 h)",
+   "Séquence 3 — Construire sa chaîne de production et ses gabarits (4 h)",
+   "Séquence 4 — Qualité et contrôle : la différence entre un rendu IA et un livrable professionnel (3 h)",
+   "Séquence 5 — Tarification, devis, facturation et encaissement (3 h)",
+   "Séquence 6 — Acquisition des premiers clients : offre d'entrée, démonstration, prospection (3 h)",
+   "Séquence 7 — Organisation : capacité de production, planning, gestion des délais (2 h)",
+   "Séquence 8 — Atelier : simulation d'une commande client complète (1 h)",
+   "À distance — Réalisation d'un dossier client réel de bout en bout (7 h)"
+  ],
+  "presentiel_h": 21,
+  "distance_h": 7,
+  "total_h": 28,
+  "evaluation": "Dossier professionnel complet : offre, grille tarifaire, portfolio de 5 réalisations, premier devis émis.",
+  "livrables": "Chaîne de production documentée, modèles de devis et facture, grille tarifaire de référence, portfolio."
+ },
+ {
+  "code": "F3",
+  "titre": "Construire son offre, sa page de vente et son encaissement en ligne",
+  "niveau": "Intermédiaire",
+  "public": "Entrepreneurs, formateurs, prestataires de services, associations.",
+  "prerequis": "Avoir un produit ou un service à vendre.",
+  "objectifs": [
+   "Structurer une offre lisible et différenciante",
+   "Rédiger une page de vente complète et convaincante",
+   "Mettre en place l'encaissement mobile money et carte",
+   "Suivre ses ventes et relancer les paniers abandonnés"
+  ],
+  "programme": [
+   "Séquence 1 — Anatomie d'une offre : promesse, contenu, garantie, prix, urgence (2 h)",
+   "Séquence 2 — Structure d'une page de vente qui convertit (2 h)",
+   "Séquence 3 — Mise en place technique de la page et du paiement (2 h)",
+   "Séquence 4 — Suivi des ventes, relances et bons de réduction (1 h)",
+   "À distance — Mise en ligne de l'offre et test complet du parcours d'achat (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Page de vente en ligne avec parcours d'achat testé et validé de bout en bout.",
+  "livrables": "Trame de page de vente, check-list de mise en ligne, modèle de suivi des ventes."
+ },
+ {
+  "code": "G1",
+  "titre": "Excel professionnel : tableaux de bord, gestion et trésorerie",
+  "niveau": "Intermédiaire à avancé",
+  "public": "Gestionnaires, comptables, assistants de direction, trésoriers d'associations, entrepreneurs, étudiants en gestion.",
+  "prerequis": "Bases d'Excel (saisie, formules simples, mise en forme).",
+  "objectifs": [
+   "Structurer des données propres et exploitables",
+   "Maîtriser les fonctions de recherche, de condition et d'agrégation",
+   "Construire des tableaux croisés dynamiques et des graphiques de pilotage",
+   "Bâtir un tableau de bord de trésorerie et de suivi d'activité",
+   "Fiabiliser un classeur : contrôles de saisie, protection, documentation"
+  ],
+  "programme": [
+   "Séquence 1 — Structurer ses données : tables, nommage, règles de saisie (3 h)",
+   "Séquence 2 — Fonctions essentielles : recherche, conditions, dates, texte (4 h)",
+   "Séquence 3 — Agrégation et tableaux croisés dynamiques (3 h)",
+   "Séquence 4 — Graphiques et mise en forme conditionnelle au service de la décision (3 h)",
+   "Séquence 5 — Construire un tableau de bord de trésorerie mensuel (4 h)",
+   "Séquence 6 — Suivi d'activité : ventes, encaissements, salaires, charges (2 h)",
+   "Séquence 7 — Fiabilité : contrôles, protection, audit des formules (2 h)",
+   "À distance — Construction du classeur de gestion de l'organisation de l'apprenant (7 h)"
+  ],
+  "presentiel_h": 21,
+  "distance_h": 7,
+  "total_h": 28,
+  "evaluation": "Remise d'un classeur de gestion complet et fonctionnel avec tableau de bord automatisé.",
+  "livrables": "Classeur modèle de trésorerie, bibliothèque de formules commentées, guide de bonnes pratiques."
+ },
+ {
+  "code": "G2",
+  "titre": "Automatiser ses tableurs avec Google Sheets et Apps Script",
+  "niveau": "Avancé",
+  "public": "Gestionnaires, analystes, responsables administratifs, développeurs débutants.",
+  "prerequis": "Module G1 ou pratique confirmée du tableur.",
+  "objectifs": [
+   "Travailler à plusieurs sur un même fichier sans le corrompre",
+   "Consolider automatiquement plusieurs fichiers ou onglets",
+   "Écrire des scripts simples d'automatisation (envois, mises à jour, alertes)",
+   "Programmer des exécutions automatiques et gérer les erreurs"
+  ],
+  "programme": [
+   "Séquence 1 — Spécificités de Google Sheets et travail collaboratif (1 h 30)",
+   "Séquence 2 — Formules d'importation et de consolidation (2 h)",
+   "Séquence 3 — Premiers scripts : lecture, écriture, boucles, conditions (2 h)",
+   "Séquence 4 — Automatisations utiles : rapports, alertes, envois programmés (1 h)",
+   "Séquence 5 — Déclencheurs, journalisation et gestion des erreurs (30 min)",
+   "À distance — Automatisation d'un processus réel de l'organisation (3 h)"
+  ],
+  "presentiel_h": 7,
+  "distance_h": 3,
+  "total_h": 10,
+  "evaluation": "Automatisation fonctionnelle déployée sur un processus réel, avec documentation.",
+  "livrables": "Bibliothèque de scripts commentés, procédure de déploiement."
+ },
+ {
+  "code": "G3",
+  "titre": "Créer une application métier (SaaS) sans être développeur",
+  "niveau": "Avancé",
+  "public": "Porteurs de projet, entrepreneurs technologiques, étudiants en informatique, responsables SI, freelances.",
+  "prerequis": "Aisance informatique forte. Modules A1 et A4 recommandés. Aucune expérience de programmation exigée mais logique nécessaire.",
+  "objectifs": [
+   "Cadrer un besoin métier et le transformer en spécification exploitable",
+   "Concevoir un modèle de données et une architecture d'application simple",
+   "Construire une application web fonctionnelle assistée par IA (base de données, authentification, interface)",
+   "Mettre en ligne l'application et gérer les accès utilisateurs",
+   "Intégrer un module de paiement et facturer un abonnement"
+  ],
+  "programme": [
+   "Séquence 1 — Du besoin métier au cahier des charges fonctionnel (3 h)",
+   "Séquence 2 — Modèle de données : tables, relations, droits d'accès (3 h)",
+   "Séquence 3 — Mise en place de l'environnement et de la base de données (3 h)",
+   "Séquence 4 — Construction des écrans et de la logique métier avec l'IA comme copilote (5 h)",
+   "Séquence 5 — Authentification, rôles et sécurité des données (3 h)",
+   "Séquence 6 — Mise en ligne, nom de domaine et suivi des erreurs (2 h)",
+   "Séquence 7 — Abonnements, paiement en ligne et gestion des licences (2 h)",
+   "À distance — Finalisation et mise en production de l'application de l'apprenant (7 h)"
+  ],
+  "presentiel_h": 21,
+  "distance_h": 7,
+  "total_h": 28,
+  "evaluation": "Application déployée en ligne, accessible, avec au moins trois fonctionnalités métier opérationnelles.",
+  "livrables": "Modèle de cahier des charges, architecture de référence, check-list de mise en production."
+ },
+ {
+  "code": "G4",
+  "titre": "Transformation digitale de la TPE/PME : diagnostic et feuille de route",
+  "niveau": "Intermédiaire",
+  "public": "Dirigeants, responsables administratifs, consultants, chargés d'accompagnement d'entreprises, chambres consulaires.",
+  "prerequis": "Expérience de la gestion d'une organisation.",
+  "objectifs": [
+   "Réaliser le diagnostic numérique d'une entreprise",
+   "Prioriser les chantiers selon le rapport gain / effort / coût",
+   "Bâtir une feuille de route chiffrée sur 12 mois",
+   "Conduire le changement et lever les résistances internes",
+   "Mesurer les résultats obtenus"
+  ],
+  "programme": [
+   "Séquence 1 — Grille de diagnostic numérique : processus, outils, données, compétences (3 h)",
+   "Séquence 2 — Identifier les gisements de gain rapides (3 h)",
+   "Séquence 3 — Choisir ses outils : critères, coûts réels, dépendances (2 h)",
+   "Séquence 4 — Feuille de route sur 12 mois : phases, budget, responsables (3 h)",
+   "Séquence 5 — Conduite du changement et formation interne (2 h)",
+   "Séquence 6 — Indicateurs de suivi et revue trimestrielle (1 h)",
+   "À distance — Diagnostic complet d'une entreprise réelle et feuille de route (6 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 6,
+  "total_h": 20,
+  "evaluation": "Rapport de diagnostic et feuille de route chiffrée présentés en soutenance.",
+  "livrables": "Grille de diagnostic, modèle de feuille de route, trame de rapport de mission."
+ },
+ {
+  "code": "G5",
+  "titre": "WordPress : créer et administrer un site web professionnel",
+  "niveau": "Intermédiaire",
+  "public": "Entrepreneurs, associations, écoles, chargés de communication, freelances, demandeurs d'emploi.",
+  "prerequis": "Aisance informatique générale.",
+  "objectifs": [
+   "Installer et configurer un site sur un hébergement mutualisé",
+   "Structurer l'arborescence et créer les pages essentielles",
+   "Publier et organiser des contenus (articles, médias, menus)",
+   "Optimiser la vitesse et le référencement de base",
+   "Sécuriser, sauvegarder et maintenir le site dans la durée"
+  ],
+  "programme": [
+   "Séquence 1 — Nom de domaine, hébergement, installation, certificat de sécurité (3 h)",
+   "Séquence 2 — Thème, identité visuelle et structure du site (3 h)",
+   "Séquence 3 — Pages, articles, médias, menus et formulaires de contact (3 h)",
+   "Séquence 4 — Référencement de base et performances (2 h)",
+   "Séquence 5 — Sécurité, sauvegardes et mises à jour (2 h)",
+   "Séquence 6 — Atelier : mise en ligne du site de chaque apprenant (1 h)",
+   "À distance — Finalisation et mise en production du site (7 h)"
+  ],
+  "presentiel_h": 14,
+  "distance_h": 7,
+  "total_h": 21,
+  "evaluation": "Site web en ligne, structuré, sécurisé, avec au moins cinq pages et un formulaire fonctionnel.",
+  "livrables": "Guide d'administration, check-list de mise en ligne, procédure de sauvegarde."
+ }
+]

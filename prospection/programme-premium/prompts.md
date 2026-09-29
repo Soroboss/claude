@@ -120,7 +120,9 @@ Tout ça se lit directement dans `ecoles-ci-contacts.csv` et dans `tools/segment
 
 ## Dans quel ordre s'en servir
 
-1. Il répond « envoyez le programme » → **Prompt 1**, dans l'heure. C'est tout ce qu'il demande.
+1. Il répond « envoyez le programme » → **le catalogue Écoles** (`catalogue/`), tout de suite :
+   sa page 2 est le programme de la séance. Le **Prompt 1** sert à produire une version d'une
+   page personnalisée au nom de l'école, si tu veux marquer le coup.
 2. Il demande le prix → **Prompt 2**. Jamais avant qu'il le demande.
 3. Il dit oui → **Prompt 4** pour préparer le kit, **Prompt 5** pour les attestations.
 4. **Prompt 3** une seule fois, pour avoir un gabarit visuel réutilisable sur toutes les écoles.
