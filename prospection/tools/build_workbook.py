@@ -195,10 +195,10 @@ tb.sheet_view.showGridLines = False
 bc = wb.create_sheet("Base contacts")
 tete = ["Ecole", "Type", "Statut", "Ville / Commune", "Adresse", "Telephone 1",
         "Telephone 2", "WhatsApp", "Email", "Site web", "Interlocuteur cible",
-        "Fiabilite", "Source", "Type email", "Etat email"]
+        "Fiabilite", "Source", "Type email", "Etat email", "Segment"]
 bc.append(tete)
 style_entete(bc, 1, len(tete))
-largeurs(bc, [46, 42, 18, 30, 56, 19, 19, 19, 30, 28, 32, 11, 32, 15, 13])
+largeurs(bc, [46, 42, 18, 30, 56, 19, 19, 19, 30, 28, 32, 11, 32, 15, 13, 14])
 for l in sorted(base, key=lambda x: (x[3].lower(), x[0].lower())):
     bc.append(l)
 for r in range(2, bc.max_row + 1):
@@ -214,7 +214,7 @@ for r in range(2, bc.max_row + 1):
     etat.fill = PatternFill("solid", fgColor={
         "valide": VERT, "a verifier": JAUNE, "boite pleine": "FCE4E4"}.get(etat.value, GRIS))
 bc.freeze_panes = "A2"
-bc.auto_filter.ref = f"A1:O{bc.max_row}"
+bc.auto_filter.ref = f"A1:P{bc.max_row}"
 
 # ---- 5. Offre et tarifs --------------------------------------------------- #
 of = wb.create_sheet("Offre et tarifs")
@@ -381,6 +381,96 @@ r += 1
 titre(sc, r, "5. Rythme", 11)
 texte(sc, r + 1, 3, "15 contacts WhatsApp par jour sur la vague 1, relance a J+2 puis J+7, puis on passe a la vague suivante. Renseigner le nom du Directeur des Etudes a chaque appel : c'est cette colonne qui fera la valeur de la base dans un mois.")
 sc.row_dimensions[r + 1].height = 45
+
+
+
+# ---- 7. Accroches par filiere (table de reference lue par la fiche) -------- #
+from segments import ACCROCHES, TEXTES  # noqa: E402
+
+ac = wb.create_sheet("Accroches")
+largeurs(ac, [4, 18, 74, 46])
+ac.sheet_view.showGridLines = False
+titre(ac, 1, "ACCROCHES PAR FILIERE", 12)
+texte(ac, 2, 2, "Lue par la fiche prospect. Une ligne par segment de filiere.", italique=True)
+for i, v in enumerate(["Segment", "Accroche WhatsApp", "Travaux rendus"], start=2):
+    texte(ac, 4, i, v, gras=True).fill = PatternFill("solid", fgColor=GRIS)
+for i, (seg, txt) in enumerate(sorted(ACCROCHES.items()), start=5):
+    texte(ac, i, 2, seg)
+    texte(ac, i, 3, txt.replace("\n", " "))
+    texte(ac, i, 4, TEXTES[seg]["travaux"])
+    ac.row_dimensions[i].height = 30
+derniere_accroche = 4 + len(ACCROCHES)
+
+# ---- 8. Fiche prospect ---------------------------------------------------- #
+fp = wb.create_sheet("Fiche prospect", 1)
+largeurs(fp, [4, 26, 62, 40])
+fp.sheet_view.showGridLines = False
+titre(fp, 1, "FICHE PROSPECT", 14)
+texte(fp, 2, 2, "Choisissez une ecole dans la liste deroulante : la fiche se remplit toute seule.", italique=True)
+
+fp["C4"] = base[0][0]
+fp["C4"].font = Font(name=POLICE, size=12, bold=True, color="0000FF")
+fp["C4"].fill = PatternFill("solid", fgColor=JAUNE)
+fp["C4"].border = BORDURE
+texte(fp, 4, 2, "Ecole", gras=True)
+dv_ecole = DataValidation(type="list",
+                          formula1=f"='Base contacts'!$A$2:$A${bc.max_row}", allow_blank=False)
+fp.add_data_validation(dv_ecole)
+dv_ecole.add("C4")
+
+# INDEX/MATCH sur la colonne de la base : une seule reference a maintenir
+CHAMPS = [
+    (6,  "Type d'etablissement", 2), (7,  "Statut", 3), (8,  "Ville / Commune", 4),
+    (9,  "Adresse", 5), (11, "Telephone 1", 6), (12, "Telephone 2", 7),
+    (13, "WhatsApp", 8), (15, "Email", 9), (16, "Etat de l'adresse", 15),
+    (17, "Site web", 10), (19, "Interlocuteur a demander", 11),
+    (20, "Fiabilite du contact", 12), (21, "Source", 13), (22, "Filiere (segment)", 16),
+]
+for ligne, libelle, col in CHAMPS:
+    texte(fp, ligne, 2, libelle, gras=True)
+    c = fp.cell(row=ligne, column=3,
+                value=f"=IFERROR(INDEX('Base contacts'!${get_column_letter(col)}$2:"
+                      f"${get_column_letter(col)}${bc.max_row},"
+                      f"MATCH($C$4,'Base contacts'!$A$2:$A${bc.max_row},0)),\"\")")
+    c.font = Font(name=POLICE, size=10)
+    c.fill = PatternFill("solid", fgColor=VERT)
+    c.border = BORDURE
+    c.alignment = Alignment(wrap_text=True, vertical="center")
+
+titre(fp, 24, "Accroche WhatsApp a utiliser", 11)
+fp.merge_cells("B25:D27")
+acc = fp.cell(row=25, column=2,
+              value=f"=IFERROR(INDEX(Accroches!$C$5:$C${derniere_accroche},"
+                    f"MATCH($C$22,Accroches!$B$5:$B${derniere_accroche},0)),\"\")")
+acc.font = Font(name=POLICE, size=11, italic=True)
+acc.fill = PatternFill("solid", fgColor=VERT)
+acc.alignment = Alignment(wrap_text=True, vertical="top")
+acc.border = BORDURE
+
+titre(fp, 29, "Canal recommande", 11)
+canal = fp.cell(row=30, column=3,
+                value='=IF($C$16="sans email","WhatsApp ou telephone : aucune adresse exploitable",'
+                      'IF($C$16="boite pleine","WhatsApp d\'abord, la boite e-mail sature",'
+                      'IF($C$16="a verifier","E-mail possible mais adresse jamais testee : doubler par WhatsApp",'
+                      '"E-mail puis relance WhatsApp")))')
+canal.font = Font(name=POLICE, size=10, bold=True)
+canal.fill = PatternFill("solid", fgColor=VERT)
+canal.border = BORDURE
+canal.alignment = Alignment(wrap_text=True, vertical="center")
+texte(fp, 30, 2, "Par quoi commencer", gras=True)
+
+titre(fp, 32, "A remplir pendant l'appel", 11)
+for i, libelle in enumerate(["Nom du Directeur des Etudes", "Date du 1er contact", "Statut",
+                             "Nb d'eleves annonce", "Nb de classes envisage", "Date de seance",
+                             "Notes"], start=33):
+    texte(fp, i, 2, libelle, gras=True)
+    c = fp.cell(row=i, column=3)
+    c.fill = PatternFill("solid", fgColor=JAUNE)
+    c.border = BORDURE
+    c.font = Font(name=POLICE, size=10)
+texte(fp, 41, 2, "Cette fiche ne conserve rien : elle affiche l'ecole choisie. Le suivi se tient dans l'onglet Suivi appels.",
+      italique=True)
+fp.merge_cells("B41:D41")
 
 
 print(f"Suivi appels : {derniere - 2} ecoles | Base contacts : {bc.max_row - 1} lignes")
